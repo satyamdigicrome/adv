@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(php|json|blade\\\\.php|js|css\\)$\")",
+      "Bash(wc -l /c/codes/ADV/resources/views/welcome.blade.php /c/codes/ADV/public/build/assets/*.*)",
+      "WebFetch(domain:attestation-ally.lovable.app)",
+      "Bash(php artisan:*)",
+      "Bash(php -r \":*)",
+      "Bash(php -l resources/views/layouts/app.blade.php)",
+      "Bash(php artisan tinker --execute=\":*)",
+      "Bash(php -l /tmp/test_compiled.php)"
+    ]
+  }
+}
