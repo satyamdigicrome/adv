@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ContactController  as AdminContactController;
 use App\Http\Controllers\Admin\PageController     as AdminPageController;
 use App\Http\Controllers\Admin\BlogController     as AdminBlogController;
 use App\Http\Controllers\Admin\ReviewController   as AdminReviewController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,21 @@ use App\Http\Controllers\Admin\ReviewController   as AdminReviewController;
 // FRONTEND ROUTES
 // ==========================================
 
+
+// Migrate ROute
+Route::get('migrate',function(){
+    Artisan::call('migrate');
+    Artisan::call('db:seed');
+    return "Migrated and Seeded!";
+});
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return "Cache Cleared!";
+});
 // Home
 Route::get('/', function () {
     $latestServices     = \App\Models\Service::active()->ordered()->limit(3)->get();
