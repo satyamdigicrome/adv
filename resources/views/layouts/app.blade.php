@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,9 @@
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
 
     {{-- Bootstrap 5 --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,11 +62,11 @@
         "name": "S K Document Centre",
         "description": "Leading provider of document attestation, apostille, MEA, embassy attestation and translation services across India.",
         "url": "{{ url('/') }}",
-        "telephone": "+91-9310624082",
+        "telephone": "+91-9354234462",
         "email": "info@skdocumentcentre.in",
         "address": {
             "@@type": "PostalAddress",
-            "streetAddress": "C-17/90, Ground Floor, New Ashok Nagar",
+            "streetAddress": "C-260, Ground Floor, New Ashok Nagar",
             "addressLocality": "New Delhi",
             "addressRegion": "Delhi",
             "postalCode": "110096",
@@ -74,6 +77,7 @@
     }
     </script>
 </head>
+
 <body>
 
     {{-- Top Info Bar --}}
@@ -82,13 +86,15 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6">
                     <div class="top-bar-left">
-                        <a href="tel:+919310624082"><i class="fas fa-phone-alt"></i> +91-9310624082</a>
-                        <a href="mailto:info@skdocumentcentre.in"><i class="fas fa-envelope"></i> info@skdocumentcentre.in</a>
+                        <a href="tel:+919354234462"><i class="fas fa-phone-alt"></i> +91-9354234462</a>
+                        <a href="mailto:info@skdocumentcentre.in"><i class="fas fa-envelope"></i>
+                            info@skdocumentcentre.in</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 text-end">
                     <div class="top-bar-right">
-                        <a href="#"><i class="fas fa-map-marker-alt"></i> C-17/90, New Ashok Nagar, New Delhi-110096</a>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> C-260, New Ashok Nagar, New
+                            Delhi-110096</a>
                     </div>
                 </div>
             </div>
@@ -119,11 +125,13 @@
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('about*') ? 'active' : '' }}" href="{{ url('/about') }}">About Us</a>
+                        <a class="nav-link {{ request()->is('about*') ? 'active' : '' }}"
+                            href="{{ url('/about') }}">About Us</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->is('services*') ? 'active' : '' }}" href="{{ route('services') }}"
-                            id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {{ request()->is('services*') ? 'active' : '' }}"
+                            href="{{ route('services') }}" id="servicesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Services
                         </a>
                         <ul class="dropdown-menu mega-menu" aria-labelledby="servicesDropdown">
@@ -135,15 +143,21 @@
                                     </a>
                                 </li>
                             @empty
-                                <li><a class="dropdown-item" href="{{ route('services') }}"><i class="fas fa-list"></i> All Services</a></li>
+                                <li><a class="dropdown-item" href="{{ route('services') }}"><i
+                                            class="fas fa-list"></i> All Services</a></li>
                             @endforelse
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('services') }}" style="color:var(--gold); font-weight:600;"><i class="fas fa-th me-1"></i> View All Services</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('services') }}"
+                                    style="color:var(--gold); font-weight:600;"><i class="fas fa-th me-1"></i> View
+                                    All Services</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->is('attestation-services*') ? 'active' : '' }}" href="{{ route('attestations') }}"
-                            id="attestationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {{ request()->is('attestation-services*') ? 'active' : '' }}"
+                            href="{{ route('attestations') }}" id="attestationsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Attestations
                         </a>
                         <ul class="dropdown-menu mega-menu" aria-labelledby="attestationsDropdown">
@@ -151,25 +165,37 @@
                             @forelse($navAttestations as $navAtt)
                                 <li>
                                     <a class="dropdown-item" href="{{ route('attestations.show', $navAtt->slug) }}">
-                                        <i class="{{ $navAtt->icon ?? 'fas fa-certificate' }}"></i> {{ $navAtt->title }}
-                                        @if($navAtt->country)<small style="color:#8a99b0;font-size:11px;"> ({{ $navAtt->country }})</small>@endif
+                                        <i class="{{ $navAtt->icon ?? 'fas fa-certificate' }}"></i>
+                                        {{ $navAtt->title }}
+                                        @if ($navAtt->country)
+                                            <small style="color:#8a99b0;font-size:11px;">
+                                                ({{ $navAtt->country }})
+                                            </small>
+                                        @endif
                                     </a>
                                 </li>
                             @empty
-                                <li><a class="dropdown-item" href="{{ route('attestations') }}"><i class="fas fa-list"></i> All Attestations</a></li>
+                                <li><a class="dropdown-item" href="{{ route('attestations') }}"><i
+                                            class="fas fa-list"></i> All Attestations</a></li>
                             @endforelse
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('attestations') }}" style="color:var(--gold); font-weight:600;"><i class="fas fa-th me-1"></i> View All Attestations</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('attestations') }}"
+                                    style="color:var(--gold); font-weight:600;"><i class="fas fa-th me-1"></i> View
+                                    All Attestations</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ url('/attestation-process') }}">Attestation Procedure</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('blog*') ? 'active' : '' }}"
+                            href="{{ url('/blog') }}">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('blog*') ? 'active' : '' }}" href="{{ url('/blog') }}">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="{{ url('/contact') }}">Contact</a>
+                        <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}"
+                            href="{{ url('/contact') }}">Contact</a>
                     </li>
                     <li class="nav-item ms-lg-3">
                         <a class="btn btn-gold" href="{{ url('/contact') }}">Get A Quote</a>
@@ -198,7 +224,9 @@
                                     <span class="brand-tagline">ISO 9001:2015 Certified</span>
                                 </div>
                             </div>
-                            <p class="footer-desc">S K Document Centre is a leading provider of specialised document services, dedicated to ensuring that your legal and administrative needs are met with precision and efficiency.</p>
+                            <p class="footer-desc">S K Document Centre is a leading provider of specialised document
+                                services, dedicated to ensuring that your legal and administrative needs are met with
+                                precision and efficiency.</p>
                             <div class="footer-social">
                                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -240,11 +268,11 @@
                         <ul class="footer-contact">
                             <li>
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>C-17/90, Ground Floor, New Ashok Nagar, New Delhi, Delhi-110096</span>
+                                <span>C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi-110096</span>
                             </li>
                             <li>
                                 <i class="fas fa-phone-alt"></i>
-                                <span><a href="tel:+919310624082">+91-9310624082</a></span>
+                                <span><a href="tel:+919354234462">+91-9354234462</a></span>
                             </li>
                             <li>
                                 <i class="fas fa-envelope"></i>
@@ -284,7 +312,8 @@
     </a>
 
     {{-- WhatsApp Float Button --}}
-    <a href="https://wa.me/919310624082" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/919354234462" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -305,4 +334,5 @@
     {{-- Page specific scripts --}}
     @stack('scripts')
 </body>
+
 </html>

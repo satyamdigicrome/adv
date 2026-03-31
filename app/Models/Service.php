@@ -8,14 +8,25 @@ use Illuminate\Support\Str;
 class Service extends Model
 {
     protected $fillable = [
-        'title', 'slug', 'short_description', 'long_description',
-        'banner_image', 'main_image', 'icon',
-        'meta_title', 'meta_description', 'meta_keywords',
-        'is_active', 'sort_order',
+        'title',
+        'slug',
+        'short_description',
+        'long_description',
+        'banner_image',
+        'main_image',
+        'steps_image',
+        'steps',
+        'icon',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'is_active',
+        'sort_order',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'steps' => 'json',
     ];
 
     // Auto-generate slug from title if not provided
@@ -37,8 +48,8 @@ class Service extends Model
     public function faqs()
     {
         return $this->belongsToMany(Faq::class, 'faq_service')
-                    ->where('is_active', true)
-                    ->orderBy('sort_order');
+            ->where('is_active', true)
+            ->orderBy('sort_order');
     }
 
     public function getBannerImageUrlAttribute()
@@ -49,6 +60,11 @@ class Service extends Model
     public function getMainImageUrlAttribute()
     {
         return $this->main_image ? asset('storage/' . $this->main_image) : asset('images/default-service.jpg');
+    }
+
+    public function getStepsImageUrlAttribute()
+    {
+        return $this->steps_image ? asset('storage/' . $this->steps_image) : null;
     }
 
     // Scopes

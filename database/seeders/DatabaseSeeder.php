@@ -19,84 +19,24 @@ class DatabaseSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@skdocumentcentre.in'],
             [
-                'name'     => 'SK Admin',
-                'email'    => 'admin@skdocumentcentre.in',
+                'name' => 'SK Admin',
+                'email' => 'admin@skdocumentcentre.in',
                 'password' => bcrypt('Admin@123'),
             ]
         );
 
-        // Sample services
-        $services = [
-            ['title' => 'Notary Attestation',   'icon' => 'fas fa-stamp',        'short_description' => 'Official notarization services for all types of legal documents for domestic and international use.'],
-            ['title' => 'HRD Attestation',       'icon' => 'fas fa-graduation-cap','short_description' => 'Human Resource Department attestation for educational certificates and academic documents.'],
-            ['title' => 'MEA Attestation',       'icon' => 'fas fa-globe-asia',   'short_description' => 'Ministry of External Affairs attestation mandatory for Embassy Attestation procedures.'],
-            ['title' => 'MEA Apostille',         'icon' => 'fas fa-certificate',  'short_description' => 'Apostille certification for countries under the Hague Convention for global document recognition.'],
-            ['title' => 'Embassy Attestation',   'icon' => 'fas fa-building',     'short_description' => 'Official Embassy and Consulate attestation for all required foreign country documents.'],
-            ['title' => 'Translation Services',  'icon' => 'fas fa-language',     'short_description' => 'Certified translation services in multiple languages with complete language neutrality.'],
-        ];
-
-        foreach ($services as $index => $svc) {
-            \App\Models\Service::updateOrCreate(
-                ['slug' => \Illuminate\Support\Str::slug($svc['title'])],
-                array_merge($svc, [
-                    'slug'             => \Illuminate\Support\Str::slug($svc['title']),
-                    'long_description' => '<p>' . $svc['short_description'] . '</p><p>S K Document Centre provides fast, reliable, and government-authorized ' . $svc['title'] . ' services across India. Our expert team ensures your documents are processed correctly and delivered on time.</p><h3>Required Documents</h3><ul><li>Original document to be attested</li><li>Passport copy (first and last page)</li><li>Visa copy (if applicable)</li><li>Any supporting documents as required</li></ul>',
-                    'meta_title'       => $svc['title'] . ' | S K Document Centre',
-                    'meta_description' => $svc['short_description'],
-                    'is_active'        => true,
-                    'sort_order'       => $index,
-                ])
-            );
-        }
-
-        // Sample attestations
-        $attestations = [
-            ['title' => 'UAE Embassy Attestation',          'country' => 'UAE',          'icon' => 'fas fa-flag',        'short_description' => 'Complete attestation service for UAE employment, education and personal documents through UAE Embassy in India.'],
-            ['title' => 'Saudi Arabia Embassy Attestation', 'country' => 'Saudi Arabia', 'icon' => 'fas fa-mosque',      'short_description' => 'Official Saudi Arabia Embassy attestation for all document types including educational and personal certificates.'],
-            ['title' => 'Qatar Embassy Attestation',        'country' => 'Qatar',        'icon' => 'fas fa-flag',        'short_description' => 'Qatar Embassy attestation services for employment and educational documents for Qatar visa purposes.'],
-            ['title' => 'Kuwait Embassy Attestation',       'country' => 'Kuwait',       'icon' => 'fas fa-flag',        'short_description' => 'Kuwait Embassy attestation for all professional and educational documents required for Kuwait.'],
-            ['title' => 'Oman Embassy Attestation',         'country' => 'Oman',         'icon' => 'fas fa-flag',        'short_description' => 'Complete Oman Embassy attestation services for employment and residency documents.'],
-            ['title' => 'Bahrain Embassy Attestation',      'country' => 'Bahrain',      'icon' => 'fas fa-flag',        'short_description' => 'Official Bahrain Embassy attestation for all required document types for Bahrain visa.'],
-        ];
-
-        foreach ($attestations as $index => $att) {
-            \App\Models\Attestation::updateOrCreate(
-                ['slug' => \Illuminate\Support\Str::slug($att['title'])],
-                array_merge($att, [
-                    'slug'             => \Illuminate\Support\Str::slug($att['title']),
-                    'long_description' => '<p>' . $att['short_description'] . '</p><h3>Documents We Attest</h3><ul><li>Educational Certificates (Degree, Diploma, Marksheets)</li><li>Birth Certificate</li><li>Marriage Certificate</li><li>Police Clearance Certificate</li><li>Commercial Documents</li><li>Medical Certificates</li></ul><h3>Attestation Process</h3><p>The attestation process involves Notary → HRD/Home Department → MEA → ' . $att['country'] . ' Embassy. Our experts handle the complete chain on your behalf.</p>',
-                    'meta_title'       => $att['title'] . ' | S K Document Centre',
-                    'meta_description' => $att['short_description'],
-                    'is_active'        => true,
-                    'sort_order'       => $index,
-                ])
-            );
-        }
-
-        // Sample FAQs
-        $faqs = [
-            ['question' => 'How long does attestation take?',          'answer' => '<p>Processing time varies by document type and country. Typically 7–15 working days for Embassy attestation. Express services available in 3–5 days.</p>'],
-            ['question' => 'What documents are required for MEA?',     'answer' => '<p>Original document, passport copy, and any state-level attestation (HRD/Home) as applicable.</p>'],
-            ['question' => 'Do you offer doorstep pickup?',            'answer' => '<p>Yes! We offer pickup and delivery services across all major cities in India including Delhi, Mumbai, Chennai, Bengaluru, Hyderabad, and more.</p>'],
-            ['question' => 'Is your attestation service government authorized?', 'answer' => '<p>Yes. We are an authorized attestation service provider. All attestations are done through official government channels — Notary, HRD, MEA, and respective Embassies.</p>'],
-        ];
-
-        foreach ($faqs as $index => $faq) {
-            \App\Models\Faq::updateOrCreate(
-                ['question' => $faq['question']],
-                array_merge($faq, ['sort_order' => $index, 'is_active' => true])
-            );
-        }
+        // Call the comprehensive seeder
+        $this->call(ServiceAttestationsSeeder::class);
 
         // Sample Content Pages
         $pages = [
             [
-                'title'            => 'About Us',
-                'slug'             => 'about-us',
-                'subtitle'         => 'Leading document attestation services since 2009',
-                'meta_title'       => 'About S K Document Centre | Trusted Attestation Agency India',
+                'title' => 'About Us',
+                'slug' => 'about-us',
+                'subtitle' => 'Leading document attestation services since 2009',
+                'meta_title' => 'About S K Document Centre | Trusted Attestation Agency India',
                 'meta_description' => 'Learn about S K Document Centre — India\'s trusted attestation agency with 15+ years of experience in document attestation, apostille and legalization services.',
-                'content'          => '<h2>About S K Document Centre</h2>
+                'content' => '<h2>About S K Document Centre</h2>
 <p>S K Document Centre is a leading provider of specialised document services, dedicated to ensuring that your legal and administrative needs are met with precision and efficiency. Founded by <strong>Sushant Poddar</strong>, we have been serving clients across India since 2009.</p>
 <h3>Our Mission</h3>
 <p>Our mission is to make document attestation simple, reliable, and stress-free for every client — whether you are an individual, a business, or an institution. We believe in transparency, speed, and delivering results you can trust.</p>
@@ -121,15 +61,15 @@ class DatabaseSeeder extends Seeder
 <li><strong>Dedicated Support</strong> — Assigned relationship manager for your documents</li>
 </ul>
 <h3>Our Location</h3>
-<p>We are conveniently located at <strong>C-17/90, Ground Floor, New Ashok Nagar, New Delhi – 110096</strong>. We serve clients from Delhi, Noida, Gurgaon, and all across India through our pickup and delivery network.</p>',
+<p>We are conveniently located at <strong>C-260, Ground Floor, New Ashok Nagar, New Delhi – 110096</strong>. We serve clients from Delhi, Noida, Gurgaon, and all across India through our pickup and delivery network.</p>',
             ],
             [
-                'title'            => 'Privacy Policy',
-                'slug'             => 'privacy-policy',
-                'subtitle'         => 'How we collect, use and protect your personal information',
-                'meta_title'       => 'Privacy Policy | S K Document Centre',
+                'title' => 'Privacy Policy',
+                'slug' => 'privacy-policy',
+                'subtitle' => 'How we collect, use and protect your personal information',
+                'meta_title' => 'Privacy Policy | S K Document Centre',
                 'meta_description' => 'Read S K Document Centre\'s privacy policy to understand how we collect, use and protect your personal information.',
-                'content'          => '<h2>Privacy Policy</h2>
+                'content' => '<h2>Privacy Policy</h2>
 <p><em>Last updated: ' . date('d F Y') . '</em></p>
 <p>S K Document Centre ("we", "our", "us") is committed to protecting your personal information and your right to privacy. This Privacy Policy describes how we collect, use, and share information about you when you use our services.</p>
 <h3>Information We Collect</h3>
@@ -158,15 +98,15 @@ class DatabaseSeeder extends Seeder
 <h3>Data Security</h3>
 <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Your documents are handled with the utmost care and confidentiality.</p>
 <h3>Contact Us</h3>
-<p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@skdocumentcentre.in">info@skdocumentcentre.in</a> or call <a href="tel:+919310624082">+91-9310624082</a>.</p>',
+<p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@skdocumentcentre.in">info@skdocumentcentre.in</a> or call <a href="tel:+919354234462">+91-9354234462</a>.</p>',
             ],
             [
-                'title'            => 'Terms & Conditions',
-                'slug'             => 'terms-conditions',
-                'subtitle'         => 'Please read these terms carefully before using our services',
-                'meta_title'       => 'Terms & Conditions | S K Document Centre',
+                'title' => 'Terms & Conditions',
+                'slug' => 'terms-conditions',
+                'subtitle' => 'Please read these terms carefully before using our services',
+                'meta_title' => 'Terms & Conditions | S K Document Centre',
                 'meta_description' => 'Read S K Document Centre\'s terms and conditions for using our document attestation services.',
-                'content'          => '<h2>Terms & Conditions</h2>
+                'content' => '<h2>Terms & Conditions</h2>
 <p><em>Last updated: ' . date('d F Y') . '</em></p>
 <p>By using the services of S K Document Centre, you agree to be bound by the following terms and conditions. Please read them carefully.</p>
 <h3>1. Services</h3>
@@ -205,43 +145,43 @@ class DatabaseSeeder extends Seeder
         // Sample Blog Posts
         $blogs = [
             [
-                'title'             => 'Certificate Apostille & Attestation Services – Complete Guide 2025',
-                'category'          => 'Apostille',
-                'author'            => 'SK Admin',
+                'title' => 'Certificate Apostille & Attestation Services – Complete Guide 2025',
+                'category' => 'Apostille',
+                'author' => 'SK Admin',
                 'short_description' => 'An Apostille is a form of authentication issued to documents for use in countries that participate in the Hague Convention. Learn how it works and what documents are eligible.',
-                'long_description'  => '<h2>What is an Apostille?</h2><p>An Apostille is a certificate that authenticates the origin of a public document. It is issued under the terms of the Hague Convention of 5 October 1961. Countries party to the Convention mutually recognize apostilles affixed by other countries.</p><h3>Why do you need Apostille?</h3><p>If you are moving to a Hague Convention country like Germany, USA, UK, Australia, France, Netherlands etc., you need an Apostille stamp on your documents instead of Embassy attestation.</p><h3>Documents Eligible for Apostille</h3><ul><li>Educational certificates (degree, diploma, marksheet)</li><li>Birth certificate</li><li>Marriage certificate</li><li>Death certificate</li><li>Police Clearance Certificate</li><li>Commercial documents</li></ul><h3>Apostille Process in India</h3><p>The Apostille process in India involves: (1) Notarization from a Public Notary → (2) State Authentication (HRD for educational docs, Home Department for personal docs) → (3) MEA Apostille Stamp. S K Document Centre handles the complete process on your behalf.</p>',
-                'meta_title'        => 'Certificate Apostille Services India – Complete Guide | SK Document Centre',
-                'meta_description'  => 'Learn about Apostille services in India. S K Document Centre provides fast MEA Apostille for all document types. Complete guide for 2025.',
-                'meta_keywords'     => 'apostille india, mea apostille, certificate apostille, document apostille',
-                'sort_order'        => 1,
-                'is_active'         => true,
-                'published_at'      => now()->subDays(5),
+                'long_description' => '<h2>What is an Apostille?</h2><p>An Apostille is a certificate that authenticates the origin of a public document. It is issued under the terms of the Hague Convention of 5 October 1961. Countries party to the Convention mutually recognize apostilles affixed by other countries.</p><h3>Why do you need Apostille?</h3><p>If you are moving to a Hague Convention country like Germany, USA, UK, Australia, France, Netherlands etc., you need an Apostille stamp on your documents instead of Embassy attestation.</p><h3>Documents Eligible for Apostille</h3><ul><li>Educational certificates (degree, diploma, marksheet)</li><li>Birth certificate</li><li>Marriage certificate</li><li>Death certificate</li><li>Police Clearance Certificate</li><li>Commercial documents</li></ul><h3>Apostille Process in India</h3><p>The Apostille process in India involves: (1) Notarization from a Public Notary → (2) State Authentication (HRD for educational docs, Home Department for personal docs) → (3) MEA Apostille Stamp. S K Document Centre handles the complete process on your behalf.</p>',
+                'meta_title' => 'Certificate Apostille Services India – Complete Guide | SK Document Centre',
+                'meta_description' => 'Learn about Apostille services in India. S K Document Centre provides fast MEA Apostille for all document types. Complete guide for 2025.',
+                'meta_keywords' => 'apostille india, mea apostille, certificate apostille, document apostille',
+                'sort_order' => 1,
+                'is_active' => true,
+                'published_at' => now()->subDays(5),
             ],
             [
-                'title'             => 'Diploma Certificate Attestation Services – UAE, Saudi & GCC Countries',
-                'category'          => 'Embassy Attestation',
-                'author'            => 'SK Admin',
+                'title' => 'Diploma Certificate Attestation Services – UAE, Saudi & GCC Countries',
+                'category' => 'Embassy Attestation',
+                'author' => 'SK Admin',
                 'short_description' => 'Planning to work in UAE or Saudi Arabia? Get your diploma attested through the proper channels – HRD, MEA and Embassy attestation explained step by step.',
-                'long_description'  => '<h2>Diploma Certificate Attestation for Gulf Countries</h2><p>If you are applying for a work visa to UAE, Saudi Arabia, Qatar, Kuwait, Oman, or Bahrain, your educational certificates including degree and diploma must be attested by the respective Embassy.</p><h3>Attestation Process for Educational Certificates</h3><ol><li><strong>Notary Attestation</strong> – First step, notarizing the original document</li><li><strong>HRD Attestation</strong> – State Human Resource Department authentication</li><li><strong>MEA Attestation</strong> – Ministry of External Affairs, New Delhi</li><li><strong>Embassy Attestation</strong> – Respective Embassy of the destination country</li><li><strong>MOFA Attestation</strong> – Ministry of Foreign Affairs (in the destination country)</li></ol><h3>Documents Required</h3><ul><li>Original degree/diploma certificate</li><li>University consolidated marksheet</li><li>Passport copy (first and last page)</li><li>Visa copy (if available)</li></ul><p>S K Document Centre provides end-to-end attestation services for all Gulf countries with fast turnaround times.</p>',
-                'meta_title'        => 'Diploma Certificate Attestation for UAE, Saudi Arabia | SK Document Centre',
-                'meta_description'  => 'Get your diploma certificate attested for UAE, Saudi Arabia, Qatar, Kuwait. Complete HRD-MEA-Embassy attestation service. Fast and reliable.',
-                'meta_keywords'     => 'diploma attestation, UAE attestation, Saudi Arabia attestation, educational certificate attestation',
-                'sort_order'        => 2,
-                'is_active'         => true,
-                'published_at'      => now()->subDays(10),
+                'long_description' => '<h2>Diploma Certificate Attestation for Gulf Countries</h2><p>If you are applying for a work visa to UAE, Saudi Arabia, Qatar, Kuwait, Oman, or Bahrain, your educational certificates including degree and diploma must be attested by the respective Embassy.</p><h3>Attestation Process for Educational Certificates</h3><ol><li><strong>Notary Attestation</strong> – First step, notarizing the original document</li><li><strong>HRD Attestation</strong> – State Human Resource Department authentication</li><li><strong>MEA Attestation</strong> – Ministry of External Affairs, New Delhi</li><li><strong>Embassy Attestation</strong> – Respective Embassy of the destination country</li><li><strong>MOFA Attestation</strong> – Ministry of Foreign Affairs (in the destination country)</li></ol><h3>Documents Required</h3><ul><li>Original degree/diploma certificate</li><li>University consolidated marksheet</li><li>Passport copy (first and last page)</li><li>Visa copy (if available)</li></ul><p>S K Document Centre provides end-to-end attestation services for all Gulf countries with fast turnaround times.</p>',
+                'meta_title' => 'Diploma Certificate Attestation for UAE, Saudi Arabia | SK Document Centre',
+                'meta_description' => 'Get your diploma certificate attested for UAE, Saudi Arabia, Qatar, Kuwait. Complete HRD-MEA-Embassy attestation service. Fast and reliable.',
+                'meta_keywords' => 'diploma attestation, UAE attestation, Saudi Arabia attestation, educational certificate attestation',
+                'sort_order' => 2,
+                'is_active' => true,
+                'published_at' => now()->subDays(10),
             ],
             [
-                'title'             => 'Marriage Certificate Attestation Services – Process & Requirements',
-                'category'          => 'Document Guide',
-                'author'            => 'SK Admin',
+                'title' => 'Marriage Certificate Attestation Services – Process & Requirements',
+                'category' => 'Document Guide',
+                'author' => 'SK Admin',
                 'short_description' => 'Marriage certificate attestation is required for dependent visa, family visa, and many other immigration processes. Know the complete procedure and requirements.',
-                'long_description'  => '<h2>Marriage Certificate Attestation</h2><p>Marriage certificate attestation is required when you want to bring your spouse to a foreign country on a dependent visa, or for various legal purposes abroad. The process involves authenticating your Indian marriage certificate to make it legally valid internationally.</p><h3>When is Marriage Certificate Attestation Required?</h3><ul><li>Applying for dependent/family visa</li><li>Spouse visa applications</li><li>Property transactions abroad</li><li>Insurance claims</li><li>Name change procedures in foreign countries</li></ul><h3>Attestation Process</h3><ol><li>Notary Attestation</li><li>Home Department / SDM Attestation</li><li>MEA Attestation or Apostille (depending on destination country)</li><li>Embassy Attestation (for non-Hague countries)</li></ol><h3>Processing Time</h3><p>Marriage certificate attestation typically takes 10-15 working days. Express service available in 5-7 days with an additional charge. Contact S K Document Centre for exact timelines and charges.</p>',
-                'meta_title'        => 'Marriage Certificate Attestation Services India | SK Document Centre',
-                'meta_description'  => 'Complete marriage certificate attestation services for visa, immigration and legal purposes. Fast, reliable and government-authorized process.',
-                'meta_keywords'     => 'marriage certificate attestation, marriage certificate apostille, spouse visa attestation',
-                'sort_order'        => 3,
-                'is_active'         => true,
-                'published_at'      => now()->subDays(15),
+                'long_description' => '<h2>Marriage Certificate Attestation</h2><p>Marriage certificate attestation is required when you want to bring your spouse to a foreign country on a dependent visa, or for various legal purposes abroad. The process involves authenticating your Indian marriage certificate to make it legally valid internationally.</p><h3>When is Marriage Certificate Attestation Required?</h3><ul><li>Applying for dependent/family visa</li><li>Spouse visa applications</li><li>Property transactions abroad</li><li>Insurance claims</li><li>Name change procedures in foreign countries</li></ul><h3>Attestation Process</h3><ol><li>Notary Attestation</li><li>Home Department / SDM Attestation</li><li>MEA Attestation or Apostille (depending on destination country)</li><li>Embassy Attestation (for non-Hague countries)</li></ol><h3>Processing Time</h3><p>Marriage certificate attestation typically takes 10-15 working days. Express service available in 5-7 days with an additional charge. Contact S K Document Centre for exact timelines and charges.</p>',
+                'meta_title' => 'Marriage Certificate Attestation Services India | SK Document Centre',
+                'meta_description' => 'Complete marriage certificate attestation services for visa, immigration and legal purposes. Fast, reliable and government-authorized process.',
+                'meta_keywords' => 'marriage certificate attestation, marriage certificate apostille, spouse visa attestation',
+                'sort_order' => 3,
+                'is_active' => true,
+                'published_at' => now()->subDays(15),
             ],
         ];
 
@@ -254,11 +194,11 @@ class DatabaseSeeder extends Seeder
 
         // Sample Reviews
         $reviews = [
-            ['reviewer_name' => 'Rahul Sharma',  'reviewer_location' => 'Delhi',     'rating' => 5, 'review_text' => 'Excellent service! They helped me get my degree certificate attested for UAE in record time. The team was professional, responsive and the pricing was transparent. Highly recommend SK Document Centre to anyone needing attestation services!', 'source' => 'Google', 'sort_order' => 1, 'is_active' => true],
-            ['reviewer_name' => 'Priya Gupta',   'reviewer_location' => 'Mumbai',    'rating' => 5, 'review_text' => 'SK Document Centre handled my marriage certificate attestation for a Kuwait visa. They guided me through every step and delivered the attested documents on time. Best attestation service in India. Very satisfied with their work.', 'source' => 'Google', 'sort_order' => 2, 'is_active' => true],
-            ['reviewer_name' => 'Ahmed Khan',    'reviewer_location' => 'Hyderabad', 'rating' => 5, 'review_text' => 'Best attestation service in India. They guided me through the Apostille process for my documents and got it done quickly. Very professional staff and excellent customer support throughout the process.', 'source' => 'Google', 'sort_order' => 3, 'is_active' => true],
-            ['reviewer_name' => 'Sunita Verma',  'reviewer_location' => 'Bangalore', 'rating' => 5, 'review_text' => 'I needed my documents attested urgently for Saudi Arabia and they completed it within 5 days. The staff was very helpful and kept me updated at every stage. Truly a reliable and trusted service.', 'source' => 'Google', 'sort_order' => 4, 'is_active' => true],
-            ['reviewer_name' => 'Mohammed Ali',  'reviewer_location' => 'Chennai',   'rating' => 5, 'review_text' => 'Got my degree and birth certificate attested from here. Very smooth process, no hassles at all. They picked up and delivered the documents to my doorstep. Would definitely recommend to friends and family.', 'source' => 'Google', 'sort_order' => 5, 'is_active' => true],
+            ['reviewer_name' => 'Rahul Sharma', 'reviewer_location' => 'Delhi', 'rating' => 5, 'review_text' => 'Excellent service! They helped me get my degree certificate attested for UAE in record time. The team was professional, responsive and the pricing was transparent. Highly recommend SK Document Centre to anyone needing attestation services!', 'source' => 'Google', 'sort_order' => 1, 'is_active' => true],
+            ['reviewer_name' => 'Priya Gupta', 'reviewer_location' => 'Mumbai', 'rating' => 5, 'review_text' => 'SK Document Centre handled my marriage certificate attestation for a Kuwait visa. They guided me through every step and delivered the attested documents on time. Best attestation service in India. Very satisfied with their work.', 'source' => 'Google', 'sort_order' => 2, 'is_active' => true],
+            ['reviewer_name' => 'Ahmed Khan', 'reviewer_location' => 'Hyderabad', 'rating' => 5, 'review_text' => 'Best attestation service in India. They guided me through the Apostille process for my documents and got it done quickly. Very professional staff and excellent customer support throughout the process.', 'source' => 'Google', 'sort_order' => 3, 'is_active' => true],
+            ['reviewer_name' => 'Sunita Verma', 'reviewer_location' => 'Bangalore', 'rating' => 5, 'review_text' => 'I needed my documents attested urgently for Saudi Arabia and they completed it within 5 days. The staff was very helpful and kept me updated at every stage. Truly a reliable and trusted service.', 'source' => 'Google', 'sort_order' => 4, 'is_active' => true],
+            ['reviewer_name' => 'Mohammed Ali', 'reviewer_location' => 'Chennai', 'rating' => 5, 'review_text' => 'Got my degree and birth certificate attested from here. Very smooth process, no hassles at all. They picked up and delivered the documents to my doorstep. Would definitely recommend to friends and family.', 'source' => 'Google', 'sort_order' => 5, 'is_active' => true],
         ];
 
         foreach ($reviews as $review) {
