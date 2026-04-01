@@ -687,6 +687,8 @@
                                         <i class="fas fa-star"
                                             style="{{ $i <= $review->rating ? '' : 'opacity:0.25;' }}"></i>
                                     @endfor
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                                        alt="Google" class="testimonial-google-logo" />
                                 </div>
                                 <p>"{{ $review->review_text }}"</p>
                                 <div class="testimonial-author">
@@ -742,6 +744,8 @@
                                     @for ($i = 0; $i < $review['rating']; $i++)
                                         <i class="fas fa-star"></i>
                                     @endfor
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                                        alt="Google" class="testimonial-google-logo" />
                                 </div>
                                 <p>"{{ $review['text'] }}"</p>
                                 <div class="testimonial-author">
@@ -908,6 +912,20 @@
             background: var(--gold);
             color: var(--primary) !important;
             border-color: var(--gold);
+        }
+
+        .testimonial-stars {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .testimonial-google-logo {
+            width: 18px;
+            height: 18px;
+            margin-left: 0.35rem;
+            display: inline-block;
+            vertical-align: middle;
         }
     </style>
 @endpush
