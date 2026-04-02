@@ -24,15 +24,15 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title'            => 'required|string|max:200',
-            'slug'             => 'required|string|max:100|unique:pages,slug|regex:/^[a-z0-9-]+$/',
-            'subtitle'         => 'nullable|string|max:300',
-            'content'          => 'nullable|string',
-            'banner_image'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
-            'meta_title'       => 'nullable|string|max:255',
+            'title' => 'required|string|max:200',
+            'slug' => 'required|string|max:100|unique:pages,slug|regex:/^[a-z0-9-]+$/',
+            'subtitle' => 'nullable|string|max:300',
+            'content' => 'nullable|string',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
+            'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
-            'meta_keywords'    => 'nullable|string|max:500',
-            'is_active'        => 'nullable',
+            'meta_keywords' => 'nullable|string|max:500',
+            'is_active' => 'nullable',
         ]);
 
         $validated['is_active'] = $request->has('is_active') ? 1 : 0;
@@ -53,21 +53,28 @@ class PageController extends Controller
     public function update(Request $request, Page $page)
     {
         $validated = $request->validate([
-            'title'            => 'required|string|max:200',
-            'slug'             => 'required|string|max:100|unique:pages,slug,'.$page->id.'|regex:/^[a-z0-9-]+$/',
-            'subtitle'         => 'nullable|string|max:300',
-            'content'          => 'nullable|string',
-            'banner_image'     => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
-            'meta_title'       => 'nullable|string|max:255',
+            'title' => 'required|string|max:200',
+            'slug' => 'required|string|max:100|unique:pages,slug,' . $page->id . '|regex:/^[a-z0-9-]+$/',
+            'subtitle' => 'nullable|string|max:300',
+            'content' => 'nullable|string',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
+            'delete_banner_image' => 'nullable|boolean',
+            'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
-            'meta_keywords'    => 'nullable|string|max:500',
-            'is_active'        => 'nullable',
+            'meta_keywords' => 'nullable|string|max:500',
+            'is_active' => 'nullable',
         ]);
 
         $validated['is_active'] = $request->has('is_active') ? 1 : 0;
 
+        if ($request->boolean('delete_banner_image') && $page->banner_image) {
+            Storage::disk('public')->delete($page->banner_image);
+            $validated['banner_image'] = null;
+        }
+
         if ($request->hasFile('banner_image')) {
-            if ($page->banner_image) Storage::disk('public')->delete($page->banner_image);
+            if ($page->banner_image)
+                Storage::disk('public')->delete($page->banner_image);
             $validated['banner_image'] = $request->file('banner_image')->store('pages/banners', 'public');
         }
 
@@ -77,7 +84,8 @@ class PageController extends Controller
 
     public function destroy(Page $page)
     {
-        if ($page->banner_image) Storage::disk('public')->delete($page->banner_image);
+        if ($page->banner_image)
+            Storage::disk('public')->delete($page->banner_image);
         $page->delete();
         return redirect()->route('admin.pages.index')->with('success', 'Page deleted.');
     }

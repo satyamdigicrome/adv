@@ -40,7 +40,13 @@
     <div style="background:var(--gold);padding:0;">
         <div class="container">
             <div class="row g-0 text-center">
-                @foreach ([['fas fa-phone-alt', 'Call Us', '+91-9354234462', 'tel:+919354234462'], ['fas fa-envelope', 'Email Us', 'info@skdocumentcentre.in', 'mailto:info@skdocumentcentre.in'], ['fab fa-whatsapp', 'WhatsApp', '+91-9354234462', 'https://wa.me/919354234462'], ['fas fa-clock', 'Working Hours', 'Mon–Sat: 9AM–6PM', '#']] as $info)
+                @php
+                    $sitePhone = $siteSettings->phone ?? '+91-9354234462';
+                    $phoneHref = 'tel:' . preg_replace('/\D/', '', $sitePhone);
+                    $siteEmail = $siteSettings->email ?? 'info@skdocumentcentre.in';
+                    $siteAddress = $siteSettings->address ?? 'C-260, New Ashok Nagar, New Delhi-110096';
+                @endphp
+                @foreach ([['fas fa-phone-alt', 'Call Us', $sitePhone, $phoneHref], ['fas fa-envelope', 'Email Us', $siteEmail, 'mailto:' . $siteEmail], ['fab fa-whatsapp', 'WhatsApp', $sitePhone, 'https://wa.me/' . preg_replace('/\D/', '', $sitePhone)], ['fas fa-clock', 'Working Hours', 'Mon–Sat: 9AM–6PM', '#']] as $info)
                     <div class="col-6 col-md-3" style="border-right:1px solid rgba(15,32,68,0.12);padding:18px 16px;">
                         <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
                             <i class="{{ $info[0] }}" style="color:var(--primary);font-size:18px;"></i>
@@ -229,13 +235,13 @@
                     <div
                         style="border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(15,32,68,0.07);border:1px solid #edf1f8;">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.3459870019674!2d77.30561!3d28.628099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce4c4d4ccdcb3%3A0x4a7fbda5a8a8dff8!2sNew%20Ashok%20Nagar%2C%20New%20Delhi%2C%20Delhi%20110096!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.475675256723!2d77.30484847464757!3d28.59496918578702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5456606cf8d%3A0xef69eb7c73303f66!2sS%20K%20Document%20Centre%20%7C%20Notary%2CAttestation%2C%20Apostille%2C%20MEA%2C%20HRD%2C%20UAE%20Embassy%20Services!5e1!3m2!1sen!2sin!4v1775135847016!5m2!1sen!2sin"
                             width="100%" height="280" style="border:0;display:block;" allowfullscreen=""
                             loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                             title="S K Document Centre Location">
                         </iframe>
                         <div style="background:#fff;padding:14px 18px;border-top:1px solid #edf1f8;">
-                            <a href="https://maps.google.com/?q=New+Ashok+Nagar+New+Delhi+110096" target="_blank"
+                            <a href="https://maps.google.com/?q=C-260,+Ground+Floor,+New+Ashok+Nagar,+New+Delhi,+110096" target="_blank"
                                 style="font-size:13px;font-weight:700;color:var(--primary);text-decoration:none;">
                                 <i class="fas fa-directions me-2" style="color:var(--gold);"></i>
                                 Get Directions on Google Maps

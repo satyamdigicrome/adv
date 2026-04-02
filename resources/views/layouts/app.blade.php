@@ -62,11 +62,11 @@
         "name": "S K Document Centre",
         "description": "Leading provider of document attestation, apostille, MEA, embassy attestation and translation services across India.",
         "url": "{{ url('/') }}",
-        "telephone": "+91-9354234462",
-        "email": "info@skdocumentcentre.in",
+        "telephone": "{{ $siteSettings->phone ?? '+91-9354234462' }}",
+        "email": "{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}",
         "address": {
             "@@type": "PostalAddress",
-            "streetAddress": "C-260, Ground Floor, New Ashok Nagar",
+            "streetAddress": "{{ $siteSettings->address ?? 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi 110096' }}",
             "addressLocality": "New Delhi",
             "addressRegion": "Delhi",
             "postalCode": "110096",
@@ -86,15 +86,17 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6">
                     <div class="top-bar-left">
-                        <a href="tel:+919354234462"><i class="fas fa-phone-alt"></i> +91-9354234462</a>
-                        <a href="mailto:info@skdocumentcentre.in"><i class="fas fa-envelope"></i>
-                            info@skdocumentcentre.in</a>
+                        <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}"><i
+                                class="fas fa-phone-alt"></i> {{ $siteSettings->phone ?? '+91-9354234462' }}</a>
+                        <a href="mailto:{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}"><i
+                                class="fas fa-envelope"></i>
+                            {{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 text-end">
                     <div class="top-bar-right">
-                        <a href="#"><i class="fas fa-map-marker-alt"></i> C-260, New Ashok Nagar, New
-                            Delhi-110096</a>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i>
+                            {{ $siteSettings->address ?? 'C-260, New Ashok Nagar, New Delhi-110096' }}</a>
                     </div>
                 </div>
             </div>
@@ -122,7 +124,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
+                            href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('about*') ? 'active' : '' }}"
@@ -158,7 +161,7 @@
                         <a class="nav-link dropdown-toggle {{ request()->is('attestation-services*') ? 'active' : '' }}"
                             href="{{ route('attestations') }}" id="attestationsDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Attestations
+                            Embassy Attestations
                         </a>
                         <ul class="dropdown-menu mega-menu" aria-labelledby="attestationsDropdown">
                             @php $navAttestations = \App\Models\Attestation::active()->ordered()->get(); @endphp
@@ -228,11 +231,14 @@
                                 services, dedicated to ensuring that your legal and administrative needs are met with
                                 precision and efficiency.</p>
                             <div class="footer-social">
-                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="{{ $siteSettings->facebook_url ?: '#' }}" aria-label="Facebook"
+                                    target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{ $siteSettings->twitter_url ?: '#' }}" aria-label="Twitter"
+                                    target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="{{ $siteSettings->linkedin_url ?: '#' }}" aria-label="LinkedIn"
+                                    target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="{{ $siteSettings->instagram_url ?: '#' }}" aria-label="Instagram"
+                                    target="_blank"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -243,7 +249,7 @@
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="{{ url('/about') }}">About Us</a></li>
                             <li><a href="{{ url('/services') }}">Services</a></li>
-                            <li><a href="{{ url('/attestation-process') }}">Attestation Process</a></li>
+                            <li><a href="{{ route('attestations') }}">Embassy Attestations</a></li>
                             <li><a href="{{ url('/blog') }}">Blog</a></li>
                             <li><a href="{{ url('/contact') }}">Contact Us</a></li>
                         </ul>
@@ -252,14 +258,19 @@
                     <div class="col-lg-3 col-md-6 mb-5">
                         <h5 class="footer-heading">Our Services</h5>
                         <ul class="footer-links">
-                            <li><a href="{{ url('/services/notary-attestation') }}">Notary Attestation</a></li>
+                            @foreach (App\Models\Service::active()->ordered()->limit(6)->get() as $svc)
+                                <li><a href="{{ route('services.show', $svc->slug) }}"><i
+                                            class="{{ $svc->icon ?? 'fas fa-check' }} me-1"></i>
+                                        {{ $svc->title }}</a></li>
+                            @endforeach
+                            {{-- <li><a href="{{ url('/services/notary-attestation') }}">Notary Attestation</a></li>
                             <li><a href="{{ url('/services/hrd-attestation') }}">HRD Attestation</a></li>
                             <li><a href="{{ url('/services/mea-attestation') }}">MEA Attestation</a></li>
                             <li><a href="{{ url('/services/mea-apostille') }}">MEA Apostille</a></li>
                             <li><a href="{{ url('/services/embassy-attestation') }}">Embassy Attestation</a></li>
                             <li><a href="{{ url('/services/translation-services') }}">Translation Services</a></li>
                             <li><a href="{{ url('/services/mofa-attestation') }}">MOFA Attestation</a></li>
-                            <li><a href="{{ url('/services/chamber-of-commerce') }}">Chamber of Commerce</a></li>
+                            <li><a href="{{ url('/services/chamber-of-commerce') }}">Chamber of Commerce</a></li> --}}
                         </ul>
                     </div>
 
@@ -268,15 +279,17 @@
                         <ul class="footer-contact">
                             <li>
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi-110096</span>
+                                <span>{{ $siteSettings->address ?? 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi-110096' }}</span>
                             </li>
                             <li>
                                 <i class="fas fa-phone-alt"></i>
-                                <span><a href="tel:+919354234462">+91-9354234462</a></span>
+                                <span><a
+                                        href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>, <a href="tel:01149392112">011-49392112</a></span>
                             </li>
                             <li>
                                 <i class="fas fa-envelope"></i>
-                                <span><a href="mailto:info@skdocumentcentre.in">info@skdocumentcentre.in</a></span>
+                                <span><a
+                                        href="mailto:{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}">{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}</a></span>
                             </li>
                             <li>
                                 <i class="fas fa-clock"></i>
@@ -312,8 +325,8 @@
     </a>
 
     {{-- WhatsApp Float Button --}}
-    <a href="https://wa.me/919354234462" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919354234462') }}"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 

@@ -66,12 +66,12 @@ class ServiceController extends Controller
                         'description' => $step['description'] ?? null,
                         'image' => null,
                     ];
-                    
+
                     // Handle step image upload
                     if ($request->hasFile("steps.$index.image")) {
                         $stepItem['image'] = $request->file("steps.$index.image")->store('services/steps-detail', 'public');
                     }
-                    
+
                     $stepsData[] = $stepItem;
                 }
             }
@@ -103,6 +103,9 @@ class ServiceController extends Controller
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'main_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'steps_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'delete_banner_image' => 'nullable|boolean',
+            'delete_main_image' => 'nullable|boolean',
+            'delete_steps_image' => 'nullable|boolean',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
             'meta_keywords' => 'nullable|string|max:500',
@@ -112,6 +115,20 @@ class ServiceController extends Controller
 
         $validated['slug'] = $validated['slug'] ?? Str::slug($validated['title']);
         $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        // Delete individual image fields if requested
+        if ($request->boolean('delete_banner_image') && $service->banner_image) {
+            Storage::disk('public')->delete($service->banner_image);
+            $validated['banner_image'] = null;
+        }
+        if ($request->boolean('delete_main_image') && $service->main_image) {
+            Storage::disk('public')->delete($service->main_image);
+            $validated['main_image'] = null;
+        }
+        if ($request->boolean('delete_steps_image') && $service->steps_image) {
+            Storage::disk('public')->delete($service->steps_image);
+            $validated['steps_image'] = null;
+        }
 
         if ($request->hasFile('banner_image')) {
             if ($service->banner_image)
@@ -139,21 +156,27 @@ class ServiceController extends Controller
                         'description' => $step['description'] ?? null,
                         'image' => null,
                     ];
-                    
-                    // If step image was provided before and no new upload, keep it
-                    if (isset($step['existing_image']) && empty($request->file("steps.$index.image"))) {
+
+                    // If step image was provided before and no new upload, keep it (unless removal requested)
+                    if (isset($step['existing_image']) && empty($request->file("steps.$index.image")) && empty($step['delete_image'])) {
                         $stepItem['image'] = $step['existing_image'];
                     }
-                    
+
+                    // Handle step image removal
+                    if (!empty($step['existing_image']) && !empty($step['delete_image'])) {
+                        Storage::disk('public')->delete($step['existing_image']);
+                        $stepItem['image'] = null;
+                    }
+
                     // Handle step image upload
                     if ($request->hasFile("steps.$index.image")) {
                         // Delete old image if exists
-                        if (isset($step['existing_image'])) {
+                        if (!empty($step['existing_image'])) {
                             Storage::disk('public')->delete($step['existing_image']);
                         }
                         $stepItem['image'] = $request->file("steps.$index.image")->store('services/steps-detail', 'public');
                     }
-                    
+
                     $stepsData[] = $stepItem;
                 }
             }
@@ -173,7 +196,7 @@ class ServiceController extends Controller
             Storage::disk('public')->delete($service->main_image);
         if ($service->steps_image)
             Storage::disk('public')->delete($service->steps_image);
-        
+
         // Delete step images from JSON
         if ($service->steps && is_array($service->steps)) {
             foreach ($service->steps as $step) {
@@ -182,7 +205,7 @@ class ServiceController extends Controller
                 }
             }
         }
-        
+
         $service->delete();
         return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully.');
     }

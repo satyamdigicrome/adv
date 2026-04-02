@@ -17,7 +17,7 @@
                 <div class="col-lg-6 col-md-7" data-aos="fade-right">
                     <span class="hero-badge">ISO 9001:2015 Certified Company</span>
                     <h1 class="hero-title">
-                        Document<br>
+                        SK Document<br>
                         <span>Attestation</span><br>
                         Services
                     </h1>
@@ -494,17 +494,74 @@
         </div>
     </section>
 
-    <!-- ============ WHY CHOOSE US ============ -->
-    <section style="background: var(--light-bg); padding: 80px 0;">
+    <!-- ============ HOW IT WORKS ============ -->
+    <section style="background:#fff; padding: 80px 0;">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <span class="section-tag">Why Choose Us</span>
-                <h2 class="section-title">Your Trusted <span>Partner</span></h2>
+                <span class="section-tag">{{ $siteSettings->how_it_works_title ?? 'How It Works' }}</span>
+                <h2 class="section-title">{{ $siteSettings->how_it_works_title ?? 'Our Process' }}</h2>
+                <p style="color:#7a8296; max-width:680px; margin:8px auto 0;">
+                    {{ $siteSettings->how_it_works_subtitle ?? 'Follow our smooth 4-step process to get documents attested and delivered.' }}
+                </p>
                 <div class="section-divider"></div>
             </div>
             <div class="row g-4">
                 @php
-                    $reasons = [
+                    $workItems = $siteSettings->how_it_works_items ?? [
+                        [
+                            'step' => '1',
+                            'title' => 'Submit Documents',
+                            'desc' => 'Upload your documents through our secure portal or visit our office.',
+                        ],
+                        [
+                            'step' => '2',
+                            'title' => 'Document Verification',
+                            'desc' => 'Our experts verify and prepare your documents for attestation.',
+                        ],
+                        [
+                            'step' => '3',
+                            'title' => 'Attestation Process',
+                            'desc' => 'We handle notary, SDM, MEA, and embassy attestation as required.',
+                        ],
+                        [
+                            'step' => '4',
+                            'title' => 'Delivery',
+                            'desc' => 'Receive your attested documents via courier or pickup.',
+                        ],
+                    ];
+                @endphp
+
+                @foreach ($workItems as $index => $item)
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ $index * 80 }}">
+                        <div class="how-it-card p-4 text-center"
+                            style="border-radius:10px; background:#f8fafc; border:1px solid #e8edf6; min-height:250px;">
+                            <div class="how-it-step"
+                                style="width:54px; height:54px; margin:0 auto 14px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--primary-light)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700;">
+                                {{ $item['step'] ?? $index + 1 }}</div>
+                            <h5 style="font-size:16px; font-weight:700; color:var(--primary);">
+                                {{ $item['title'] ?? 'Step ' . ($index + 1) }}</h5>
+                            <p style="color:#7a8296; font-size:14px; margin-top:8px;">{{ $item['desc'] ?? '' }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHY CHOOSE US ============ -->
+    <section style="background: var(--light-bg); padding: 80px 0;">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-tag">{{ $siteSettings->why_choose_title ?? 'Why Choose Us' }}</span>
+                <h2 class="section-title">{{ $siteSettings->why_choose_title ?? 'Your Trusted Partner' }}</h2>
+                <p style="color:#7a8296; max-width:680px; margin:8px auto 0;">
+                    {{ $siteSettings->why_choose_subtitle ?? 'We provide expert guidance through every step of document processing.' }}
+                </p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row g-4">
+                @php
+                    $reasons = $siteSettings->why_choose_items ?? [
                         [
                             'icon' => 'fas fa-shield-alt',
                             'title' => 'Safe & Reliable Service',
@@ -663,6 +720,47 @@
                     View All Articles <i class="fas fa-arrow-right ms-2"></i>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <!-- ============ TIED UP COMPANIES SECTION ============ -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-tag">Our Tied-up Companies</span>
+                <h2 class="section-title">Trusted Partners</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">We are proud to collaborate with top companies across the globe.</p>
+            </div>
+
+            @if (isset($tiedUpCompanies) && $tiedUpCompanies->isNotEmpty())
+                <div class="swiper companies-swiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($tiedUpCompanies as $company)
+                            <div class="swiper-slide">
+                                <div class="company-card"
+                                    style="background:#fff; border:1px solid #e6eaf3; border-radius:12px; padding:16px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.06); height:100%;">
+                                    <div
+                                        style="height:110px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                                        @if ($company->image_url)
+                                            <img src="{{ $company->image_url }}" alt="{{ $company->name }}"
+                                                style="max-width:150px; max-height:100px; object-fit:contain;">
+                                        @else
+                                            <i class="fas fa-building" style="font-size:42px; color:#c9a84c;"></i>
+                                        @endif
+                                    </div>
+                                    <h5 style="font-size:16px; margin-bottom:8px;">{{ $company->name }}</h5>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            @else
+                <div class="text-center" style="color:#7a8296;">No tied-up companies yet. Add some from admin panel.</div>
+            @endif
         </div>
     </section>
 
@@ -901,6 +999,8 @@
 @endsection
 
 @push('styles')
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <style>
         .hero-section .btn-outline-gold {
             color: var(--white) !important;
@@ -927,5 +1027,130 @@
             display: inline-block;
             vertical-align: middle;
         }
+
+        /* Swiper Custom Styles */
+        .companies-swiper {
+            padding-bottom: 60px;
+            overflow: visible;
+        }
+
+        .companies-swiper .swiper-wrapper {
+            padding-bottom: 20px;
+        }
+
+        .companies-swiper .swiper-slide {
+            height: auto;
+            display: flex;
+        }
+
+        .companies-swiper .swiper-button-next,
+        .companies-swiper .swiper-button-prev {
+            color: var(--gold);
+            background: rgba(201, 168, 76, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-top: -20px;
+            transition: all 0.3s ease;
+        }
+
+        .companies-swiper .swiper-button-next:hover,
+        .companies-swiper .swiper-button-prev:hover {
+            background: var(--gold);
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .companies-swiper .swiper-button-next::after,
+        .companies-swiper .swiper-button-prev::after {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .companies-swiper .swiper-pagination {
+            bottom: -40px;
+        }
+
+        .companies-swiper .swiper-pagination-bullet {
+            background: var(--gold);
+            opacity: 0.3;
+            width: 8px;
+            height: 8px;
+        }
+
+        .companies-swiper .swiper-pagination-bullet-active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .company-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        @media (max-width: 768px) {
+
+            .companies-swiper .swiper-button-next,
+            .companies-swiper .swiper-button-prev {
+                display: none;
+            }
+
+            .companies-swiper {
+                padding-bottom: 40px;
+            }
+        }
     </style>
+@endpush
+
+@push('scripts')
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper for tied-up companies
+        const companiesSwiper = new Swiper('.companies-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            breakpoints: {
+                480: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: 4,
+                    spaceBetween: 25,
+                },
+                1200: {
+                    slidesPerView: 5,
+                    spaceBetween: 30,
+                }
+            },
+            navigation: {
+                nextEl: '.companies-swiper .swiper-button-next',
+                prevEl: '.companies-swiper .swiper-button-prev',
+            },
+            pagination: {
+                el: '.companies-swiper .swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            grabCursor: true,
+            speed: 800,
+            effect: 'slide',
+        });
+    </script>
 @endpush

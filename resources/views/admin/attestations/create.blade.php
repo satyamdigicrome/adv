@@ -94,6 +94,29 @@
                                 placeholder="e.g. Saudi Arabia">
                         </div>
                     </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Processing Time</label>
+                            <input type="text" name="processing_time"
+                                class="form-control @error('processing_time') is-invalid @enderror"
+                                value="{{ old('processing_time') }}" placeholder="e.g. 3-7 Days">
+                            <small class="form-text text-muted d-block mt-1">How long the attestation takes</small>
+                            @error('processing_time')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Support Type</label>
+                            <input type="text" name="support_type"
+                                class="form-control @error('support_type') is-invalid @enderror"
+                                value="{{ old('support_type') }}" placeholder="e.g. Door-to-Door">
+                            <small class="form-text text-muted d-block mt-1">Service delivery method</small>
+                            @error('support_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Short Description <span class="text-muted" style="font-weight:400;">(max
                                 500 chars)</span></label>

@@ -8,9 +8,9 @@
         <h4>Content Pages</h4>
         <div class="page-breadcrumb"><a href="{{ route('admin.dashboard') }}">Dashboard</a> / Content Pages</div>
     </div>
-    <a href="{{ route('admin.pages.create') }}" class="btn btn-gold-admin">
+    {{-- <a href="{{ route('admin.pages.create') }}" class="btn btn-gold-admin">
         <i class="fas fa-plus me-2"></i> Add Page
-    </a>
+    </a> --}}
 </div>
 
 <!-- Quick Create Shortcuts -->

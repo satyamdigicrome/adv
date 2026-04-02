@@ -142,6 +142,40 @@ class DatabaseSeeder extends Seeder
             );
         }
 
+        // Default site settings
+        \App\Models\Setting::firstOrCreate([], [
+            'site_name' => config('app.name', 'S K Document Centre'),
+            'phone' => '+91-9354234462',
+            'email' => 'info@skdocumentcentre.in',
+            'address' => 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi – 110096',
+            'facebook_url' => '',
+            'instagram_url' => '',
+            'twitter_url' => '',
+            'linkedin_url' => '',
+            'why_choose_title' => 'Your Trusted Partner',
+            'why_choose_subtitle' => 'Expert document attestation services with fast delivery and transparent pricing.',
+            'why_choose_items' => [
+                ['icon' => 'fas fa-shield-alt', 'title' => 'Safe & Reliable Service', 'desc' => 'Documents handled with maximum care and security.'],
+                ['icon' => 'fas fa-certificate', 'title' => 'Certified Translation', 'desc' => 'Professional translations accepted by government authorities.'],
+                ['icon' => 'fas fa-map-marked-alt', 'title' => 'Embassy & Apostille Experts', 'desc' => 'Complete end-to-end attestation for UAE, Qatar, Bahrain and more.'],
+                ['icon' => 'fas fa-tag', 'title' => 'Transparent Pricing', 'desc' => 'No hidden costs, clear and competitive rates.'],
+            ],
+            'how_it_works_title' => 'How It Works',
+            'how_it_works_subtitle' => 'Follow our smooth 4-step process to get documents attested and delivered.',
+            'how_it_works_items' => [
+                ['step' => '1', 'title' => 'Submit Documents', 'desc' => 'Upload your documents through our secure portal or visit our office.'],
+                ['step' => '2', 'title' => 'Document Verification', 'desc' => 'Our experts verify and prepare your documents for attestation.'],
+                ['step' => '3', 'title' => 'Attestation Process', 'desc' => 'We handle notary, SDM, MEA, and embassy attestation as required.'],
+                ['step' => '4', 'title' => 'Delivery', 'desc' => 'Receive your attested documents via courier or pickup.'],
+            ],
+        ]);
+
+        // Sample tied-up companies
+        \App\Models\TiedUpCompany::firstOrCreate(['name' => 'ABC Logistics'], ['image' => '', 'sort_order' => 1, 'is_active' => true]);
+        \App\Models\TiedUpCompany::firstOrCreate(['name' => 'Global Express'], ['image' => '', 'sort_order' => 2, 'is_active' => true]);
+        \App\Models\TiedUpCompany::firstOrCreate(['name' => 'World Couriers'], ['image' => '', 'sort_order' => 3, 'is_active' => true]);
+        \App\Models\TiedUpCompany::firstOrCreate(['name' => 'Passport Services Co.'], ['image' => '', 'sort_order' => 4, 'is_active' => true]);
+
         // Sample Blog Posts
         $blogs = [
             [

@@ -34,6 +34,8 @@ class AttestationController extends Controller
             'steps.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'icon' => 'nullable|string|max:100',
             'country' => 'nullable|string|max:100',
+            'processing_time' => 'nullable|string|max:100',
+            'support_type' => 'nullable|string|max:100',
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'main_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'steps_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -101,9 +103,14 @@ class AttestationController extends Controller
             'steps.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'icon' => 'nullable|string|max:100',
             'country' => 'nullable|string|max:100',
+            'processing_time' => 'nullable|string|max:100',
+            'support_type' => 'nullable|string|max:100',
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'main_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'steps_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'delete_banner_image' => 'nullable|boolean',
+            'delete_main_image' => 'nullable|boolean',
+            'delete_steps_image' => 'nullable|boolean',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
             'meta_keywords' => 'nullable|string|max:500',
@@ -113,6 +120,19 @@ class AttestationController extends Controller
 
         $validated['slug'] = $validated['slug'] ?? Str::slug($validated['title']);
         $validated['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        if ($request->boolean('delete_banner_image') && $attestation->banner_image) {
+            Storage::disk('public')->delete($attestation->banner_image);
+            $validated['banner_image'] = null;
+        }
+        if ($request->boolean('delete_main_image') && $attestation->main_image) {
+            Storage::disk('public')->delete($attestation->main_image);
+            $validated['main_image'] = null;
+        }
+        if ($request->boolean('delete_steps_image') && $attestation->steps_image) {
+            Storage::disk('public')->delete($attestation->steps_image);
+            $validated['steps_image'] = null;
+        }
 
         if ($request->hasFile('banner_image')) {
             if ($attestation->banner_image)
@@ -141,15 +161,21 @@ class AttestationController extends Controller
                         'image' => null,
                     ];
 
-                    // If step image was provided before and no new upload, keep it
-                    if (isset($step['existing_image']) && empty($request->file("steps.$index.image"))) {
+                    // If step image was provided before and no new upload, keep it (unless removal requested)
+                    if (isset($step['existing_image']) && empty($request->file("steps.$index.image")) && empty($step['delete_image'])) {
                         $stepItem['image'] = $step['existing_image'];
+                    }
+
+                    // Handle step image removal
+                    if (!empty($step['existing_image']) && !empty($step['delete_image'])) {
+                        Storage::disk('public')->delete($step['existing_image']);
+                        $stepItem['image'] = null;
                     }
 
                     // Handle step image upload
                     if ($request->hasFile("steps.$index.image")) {
                         // Delete old image if exists
-                        if (isset($step['existing_image'])) {
+                        if (!empty($step['existing_image'])) {
                             Storage::disk('public')->delete($step['existing_image']);
                         }
                         $stepItem['image'] = $request->file("steps.$index.image")->store('attestations/steps-detail', 'public');

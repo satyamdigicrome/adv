@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 @section('title', 'Add New Service')
 @section('page_title', 'Add New Service')
-
 @push('styles')
     <!-- Summernote -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs5.min.css" rel="stylesheet">
@@ -31,11 +30,55 @@
             display: block;
             margin-top: 10px;
         }
+
+        .form-control.is-invalid,
+        .form-control.is-invalid:focus {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+        }
+
+        .invalid-feedback {
+            color: #dc2626 !important;
+            font-size: 12.5px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #3d4a5c;
+            margin-bottom: 8px;
+        }
+
+        .form-label .text-danger {
+            color: #dc2626;
+        }
+
+        .step-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #f0f3f8;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: #f0f3f8;
+            margin: 16px 0;
+        }
     </style>
 @endpush
 
 @section('content')
-
     <div class="page-header">
         <div>
             <h4>Add New Service</h4>
@@ -80,7 +123,8 @@
                         <label class="form-label">Service Title <span class="text-danger">*</span></label>
                         <input type="text" name="title" id="title"
                             class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}"
-                            placeholder="e.g. MEA Attestation Services" required>
+                            placeholder="e.g. MEA Attestation Services" maxlength="255" required>
+                        <small class="form-text text-muted d-block mt-1">Maximum 255 characters</small>
                         @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -94,8 +138,10 @@
                                 style="font-size:12.5px; color:#8a99b0; border-radius:8px 0 0 8px; border:1.5px solid #e2e8f0; border-right:none;">/services/</span>
                             <input type="text" name="slug" id="slug"
                                 class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}"
-                                placeholder="mea-attestation-services" style="border-radius:0 8px 8px 0;">
+                                placeholder="mea-attestation-services" maxlength="255" style="border-radius:0 8px 8px 0;">
                         </div>
+                        <small class="form-text text-muted d-block mt-1">Use lowercase letters, numbers, and hyphens
+                            only</small>
                         @error('slug')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
@@ -105,9 +151,12 @@
                         <label class="form-label">Short Description <span class="text-muted" style="font-weight:400;">(max
                                 500 chars)</span></label>
                         <textarea name="short_description" class="form-control @error('short_description') is-invalid @enderror" rows="2"
-                            placeholder="Brief description shown in service cards and listings..." maxlength="500">{{ old('short_description') }}</textarea>
+                            placeholder="Brief description shown in service cards and listings..." maxlength="500" id="shortDesc">{{ old('short_description') }}</textarea>
+                        <div style="font-size:11.5px; color:#8a99b0; margin-top:5px; text-align:right;">
+                            <span id="shortDescCount">0</span>/500 characters
+                        </div>
                         @error('short_description')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -143,18 +192,38 @@
                     </h6>
                     <div class="mb-3">
                         <label class="form-label">Meta Title</label>
-                        <input type="text" name="meta_title" class="form-control" value="{{ old('meta_title') }}"
-                            placeholder="SEO title (if empty, service title is used)" maxlength="255">
+                        <input type="text" name="meta_title"
+                            class="form-control @error('meta_title') is-invalid @enderror" value="{{ old('meta_title') }}"
+                            placeholder="SEO title (if empty, service title is used)" maxlength="255" id="metaTitle">
+                        <div style="font-size:11.5px; color:#8a99b0; margin-top:5px; text-align:right;">
+                            <span id="metaTitleCount">0</span>/255 characters
+                        </div>
+                        @error('meta_title')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Meta Description</label>
-                        <textarea name="meta_description" class="form-control" rows="2"
-                            placeholder="SEO description (150-160 chars recommended)" maxlength="500">{{ old('meta_description') }}</textarea>
+                        <textarea name="meta_description" class="form-control @error('meta_description') is-invalid @enderror" rows="2"
+                            placeholder="SEO description (150-160 chars recommended)" maxlength="500" id="metaDesc">{{ old('meta_description') }}</textarea>
+                        <div style="font-size:11.5px; color:#8a99b0; margin-top:5px; text-align:right;">
+                            <span id="metaDescCount">0</span>/500 characters <span style="color:#c9a84c;">(150-160
+                                recommended)</span>
+                        </div>
+                        @error('meta_description')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-1">
                         <label class="form-label">Meta Keywords</label>
-                        <input type="text" name="meta_keywords" class="form-control"
-                            value="{{ old('meta_keywords') }}" placeholder="keyword1, keyword2, keyword3">
+                        <input type="text" name="meta_keywords"
+                            class="form-control @error('meta_keywords') is-invalid @enderror"
+                            value="{{ old('meta_keywords') }}" placeholder="keyword1, keyword2, keyword3"
+                            maxlength="500">
+                        <small class="form-text text-muted d-block mt-1">Separate keywords with commas</small>
+                        @error('meta_keywords')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -177,7 +246,7 @@
                         </div>
                         <div class="form-check form-switch mb-0">
                             <input class="form-check-input" type="checkbox" name="is_active" id="is_active"
-                                {{ old('is_active', '1') ? 'checked' : '' }}
+                                value="1" {{ old('is_active', '1') ? 'checked' : '' }}
                                 style="width:42px; height:22px; cursor:pointer;">
                         </div>
                     </div>
@@ -303,10 +372,11 @@
                 if (!$('#slug').data('manually-edited')) {
                     const slug = $(this).val()
                         .toLowerCase()
-                        .replace(/[^a-z0-9\s-]/g, '')
+                        .trim()
+                        .replace(/[^\w\s-]/g, '')
                         .replace(/\s+/g, '-')
                         .replace(/-+/g, '-')
-                        .trim();
+                        .replace(/^-+|-+$/g, '');
                     $('#slug').val(slug);
                 }
             });
@@ -412,6 +482,40 @@
         }
 
         function initializeSteps() {
-            // Initialize existing steps if editing
-            // This will be implemented in edit view with old data
+            // For create form, ensure container is ready
+            if ($('#stepsContainer').length) {
+                // Container is ready for new steps to be added
+                // If there are no steps initially, the "Add Step" button will handle adding them
+            }
         }
+
+        // Character counter functions
+        function updateCharCounter(inputId, counterId, maxChars = null) {
+            const $input = $(`#${inputId}`);
+            const $counter = $(`#${counterId}`);
+
+            $input.on('input', function() {
+                const length = $(this).val().length;
+                $counter.text(length);
+
+                if (maxChars && length > maxChars) {
+                    $counter.css('color', '#dc2626');
+                } else if (maxChars && length > maxChars * 0.8) {
+                    $counter.css('color', '#c9a84c');
+                } else {
+                    $counter.css('color', '#8a99b0');
+                }
+            });
+
+            // Initialize counter on page load
+            if ($input.val()) {
+                $input.trigger('input');
+            }
+        }
+
+        // Initialize character counters
+        updateCharCounter('shortDesc', 'shortDescCount', 500);
+        updateCharCounter('metaTitle', 'metaTitleCount', 255);
+        updateCharCounter('metaDesc', 'metaDescCount', 500);
+    </script>
+@endpush

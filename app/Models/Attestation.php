@@ -18,6 +18,8 @@ class Attestation extends Model
         'steps',
         'icon',
         'country',
+        'processing_time',
+        'support_type',
         'meta_title',
         'meta_description',
         'meta_keywords',

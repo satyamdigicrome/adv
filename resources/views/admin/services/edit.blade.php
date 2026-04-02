@@ -209,6 +209,11 @@
                         <div style="font-size:12px; color:#8a99b0; margin-bottom:6px;">Current banner:</div>
                         <img src="{{ asset('storage/' . $service->banner_image) }}" alt="Banner"
                             class="img-preview-box">
+                        <div class="form-check" style="margin-bottom:10px;">
+                            <input class="form-check-input" type="checkbox" name="delete_banner_image" value="1"
+                                id="deleteBannerImage">
+                            <label class="form-check-label" for="deleteBannerImage">Delete current banner image</label>
+                        </div>
                     @endif
                     <label class="form-label">{{ $service->banner_image ? 'Replace Banner' : 'Upload Banner' }}</label>
                     <input type="file" name="banner_image" class="form-control" accept="image/*" id="bannerInput">
@@ -225,6 +230,11 @@
                         <div style="font-size:12px; color:#8a99b0; margin-bottom:6px;">Current steps image:</div>
                         <img src="{{ asset('storage/' . $service->steps_image) }}" alt="Steps"
                             class="img-preview-box">
+                        <div class="form-check" style="margin-bottom:10px;">
+                            <input class="form-check-input" type="checkbox" name="delete_steps_image" value="1"
+                                id="deleteStepsImage">
+                            <label class="form-check-label" for="deleteStepsImage">Delete current steps image</label>
+                        </div>
                     @endif
                     <label
                         class="form-label">{{ $service->steps_image ? 'Replace Steps Image' : 'Upload Steps Image' }}</label>
@@ -242,6 +252,11 @@
                         <div style="font-size:12px; color:#8a99b0; margin-bottom:6px;">Current image:</div>
                         <img src="{{ asset('storage/' . $service->main_image) }}" alt="Main"
                             class="img-preview-box">
+                        <div class="form-check" style="margin-bottom:10px;">
+                            <input class="form-check-input" type="checkbox" name="delete_main_image" value="1"
+                                id="deleteMainImage">
+                            <label class="form-check-label" for="deleteMainImage">Delete current main image</label>
+                        </div>
                     @endif
                     <label class="form-label">{{ $service->main_image ? 'Replace Image' : 'Upload Image' }}</label>
                     <input type="file" name="main_image" class="form-control" accept="image/*" id="mainInput">
@@ -331,6 +346,7 @@
                     <div class="mb-1">
                         <label style="font-size:12px; font-weight:600; color:#3d4a5c;">Step Image</label>
                         ${step.image ? `<input type="hidden" name="steps[${stepCount}][existing_image]" value="${step.image}">` : ''}
+                        ${step.image ? `<div class="form-check" style="margin-bottom:6px;"><input type="checkbox" class="form-check-input" name="steps[${stepCount}][delete_image]" value="1" id="deleteStepImage${stepCount}"><label class="form-check-label" for="deleteStepImage${stepCount}">Remove existing step image</label></div>` : ''}
                         <input type="file" name="steps[${stepCount}][image]" class="form-control" accept="image/*" style="font-size:13px;">
                         ${imagePath ? `<img src="${imagePath}" alt="Step" style="max-width:120px; max-height:80px; border-radius:6px; border:1px solid #e2e8f0; margin-top:8px;">` : ''}
                         <img class="step-preview d-none" style="max-width:120px; max-height:80px; border-radius:6px; border:1px solid #e2e8f0; margin-top:8px;">
