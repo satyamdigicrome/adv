@@ -53,7 +53,7 @@
 
                 <div class="col-lg-6 col-md-5" data-aos="fade-left" data-aos-delay="150">
                     <div class="hero-image-wrap">
-                        <img src="{{ asset('images/hero-attestation.jpg') }}"
+                        <img src="{{ asset('images/hero.jpeg') }}"
                             alt="Document Attestation Services - S K Document Centre" class="hero-main-img"
                             onerror="this.src='https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80'; this.onerror=null;">
 
@@ -119,7 +119,7 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="about-img-wrap">
-                        <img src="{{ asset('images/about-team.jpg') }}" alt="S K Document Centre Team"
+                        <img src="{{ asset('images/afterhero.jpeg') }}" alt="S K Document Centre Team"
                             class="about-main-img"
                             onerror="this.src='https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80'; this.onerror=null;">
                         <div class="about-exp-badge">
