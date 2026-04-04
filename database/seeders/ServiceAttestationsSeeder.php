@@ -45,7 +45,7 @@ class ServiceAttestationsSeeder extends Seeder
 </ul>
 <h4>Our Advantages:</h4>
 <ul>
-<li>Experienced notaries with 15+ years of practice</li>
+<li>Experienced notaries with 11+ years of practice</li>
 <li>Government-authorized services</li>
 <li>Transparent and competitive pricing</li>
 <li>Pan-India pickup and delivery</li>
@@ -889,7 +889,7 @@ class ServiceAttestationsSeeder extends Seeder
 </ul>
 <h4>Our Saudi Arabia Expertise:</h4>
 <ul>
-<li>15+ years facilitating Saudi placements</li>
+<li>11+ years facilitating Saudi placements</li>
 <li>Understanding of Saudi business culture and requirements</li>
 <li>Direct relationships with Saudi Embassy contacts</li>
 <li>Arabic translation coordination</li>
@@ -1495,7 +1495,7 @@ class ServiceAttestationsSeeder extends Seeder
 </ul>
 <h4>Why Choose Us for Canada Immigration:</h4>
 <ul>
-<li>15+ years facilitating Canadian immigration</li>
+<li>11+ years facilitating Canadian immigration</li>
 <li>Knowledge of recent immigration policy changes</li>
 <li>Help with Express Entry profile creation and optimization</li>
 <li>ECA preparation and submission support</li>

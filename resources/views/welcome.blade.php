@@ -53,8 +53,8 @@
 
                 <div class="col-lg-6 col-md-5" data-aos="fade-left" data-aos-delay="150">
                     <div class="hero-image-wrap">
-                        <img src="{{ asset('images/hero.jpeg') }}"
-                            alt="Document Attestation Services - S K Document Centre" class="hero-main-img"
+                        <img src="{{ asset('images/hero.jpeg') }}" alt="Document Attestation Services - S K Document Centre"
+                            class="hero-main-img"
                             onerror="this.src='https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80'; this.onerror=null;">
 
                         <div class="hero-rating-badge">
@@ -87,25 +87,29 @@
             <div class="row g-0 justify-content-center">
                 <div class="col-6 col-md-3">
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="0">
-                        <div class="stat-number counter" data-target="50000">50,000</div>
+                        <div class="stat-number"><span class="counter" data-target="50000">50,000</span><span
+                                class="stat-number-suffix"><i class="fas fa-plus"></i></span></div>
                         <div class="stat-label"><i class="fas fa-file-alt me-1"></i> Documents Processed</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="stat-number counter" data-target="10000">10,000</div>
+                        <div class="stat-number"><span class="counter" data-target="10000">10,000</span><span
+                                class="stat-number-suffix"><i class="fas fa-plus"></i></span></div>
                         <div class="stat-label"><i class="fas fa-users me-1"></i> Happy Clients</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="stat-number counter" data-target="100">100</div>
+                        <div class="stat-number"><span class="counter" data-target="100">100</span><span
+                                class="stat-number-suffix"><i class="fas fa-plus"></i></span></div>
                         <div class="stat-label"><i class="fas fa-globe me-1"></i> Countries Covered</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="stat-number counter" data-target="15">15</div>
+                        <div class="stat-number"><span class="counter" data-target="11">11</span><span
+                                class="stat-number-suffix"><i class="fas fa-plus"></i></span></div>
                         <div class="stat-label"><i class="fas fa-trophy me-1"></i> Years Experience</div>
                     </div>
                 </div>
@@ -123,7 +127,7 @@
                             class="about-main-img"
                             onerror="this.src='https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80'; this.onerror=null;">
                         <div class="about-exp-badge">
-                            <div class="exp-num">15+</div>
+                            <div class="exp-num">11+</div>
                             <div class="exp-label">Years of<br>Excellence</div>
                         </div>
                     </div>
@@ -189,7 +193,7 @@
                         <div class="about-feature-item">
                             <div class="icon"><i class="fas fa-award"></i></div>
                             <div>
-                                <h6>15+ Years Experience</h6>
+                                <h6>11+ Years Experience</h6>
                                 <p>Over a decade of specialized document expertise</p>
                             </div>
                         </div>
@@ -435,37 +439,38 @@
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <span class="section-tag">How It Works</span>
-                <h2 class="section-title">Our <span style="color:var(--gold);">Attestation</span> Process</h2>
+                <h2 class="section-title">{{ $siteSettings->how_it_works_title ?? 'Attestation Process' }}</h2>
                 <div class="section-divider"></div>
                 <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">
-                    We follow a streamlined, transparent process to ensure your documents are attested quickly and
-                    accurately.
+                    {{ $siteSettings->how_it_works_subtitle ??
+                        'We follow a streamlined, transparent process to ensure your documents are attested quickly and
+                                        accurately.' }}
                 </p>
             </div>
 
             <div class="row g-4 justify-content-center">
                 @php
-                    $steps = [
+                    $workItems = $siteSettings->how_it_works_items ?? [
                         [
-                            'num' => '01',
+                            'step' => '01',
                             'title' => 'Submit Documents',
                             'desc' =>
                                 'Send us your documents to our office or visit us. We collect and verify your documents for attestation.',
                         ],
                         [
-                            'num' => '02',
+                            'step' => '02',
                             'title' => 'Verification',
                             'desc' =>
                                 'We verify and prepare your documents to ensure they meet all requirements for the attestation process.',
                         ],
                         [
-                            'num' => '03',
+                            'step' => '03',
                             'title' => 'Attestation Process',
                             'desc' =>
                                 'Notary -> SDM/HRD -> MEA -> Embassy/Apostille. Each stamp is applied at the correct authority.',
                         ],
                         [
-                            'num' => '04',
+                            'step' => '04',
                             'title' => 'Delivery',
                             'desc' =>
                                 'Receive your fully attested documents at your doorstep via courier or collect from our office.',
@@ -473,11 +478,11 @@
                     ];
                 @endphp
 
-                @foreach ($steps as $index => $step)
+                @foreach ($workItems as $index => $step)
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                         <div class="process-step">
                             <div class="process-num">
-                                <span>{{ $step['num'] }}</span>
+                                <span>{{ $step['step'] }}</span>
                             </div>
                             <h5>{{ $step['title'] }}</h5>
                             <p>{{ $step['desc'] }}</p>
@@ -487,67 +492,12 @@
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up">
-                <a href="{{ url('/attestation-process') }}" class="btn-gold">
+                <a href="{{ route('contact') }}" class="btn-gold">
                     Start Your Attestation <i class="fas fa-arrow-right ms-2"></i>
                 </a>
             </div>
         </div>
     </section>
-
-    <!-- ============ HOW IT WORKS ============ -->
-    <section style="background:#fff; padding: 80px 0;">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <span class="section-tag">{{ $siteSettings->how_it_works_title ?? 'How It Works' }}</span>
-                <h2 class="section-title">{{ $siteSettings->how_it_works_title ?? 'Our Process' }}</h2>
-                <p style="color:#7a8296; max-width:680px; margin:8px auto 0;">
-                    {{ $siteSettings->how_it_works_subtitle ?? 'Follow our smooth 4-step process to get documents attested and delivered.' }}
-                </p>
-                <div class="section-divider"></div>
-            </div>
-            <div class="row g-4">
-                @php
-                    $workItems = $siteSettings->how_it_works_items ?? [
-                        [
-                            'step' => '1',
-                            'title' => 'Submit Documents',
-                            'desc' => 'Upload your documents through our secure portal or visit our office.',
-                        ],
-                        [
-                            'step' => '2',
-                            'title' => 'Document Verification',
-                            'desc' => 'Our experts verify and prepare your documents for attestation.',
-                        ],
-                        [
-                            'step' => '3',
-                            'title' => 'Attestation Process',
-                            'desc' => 'We handle notary, SDM, MEA, and embassy attestation as required.',
-                        ],
-                        [
-                            'step' => '4',
-                            'title' => 'Delivery',
-                            'desc' => 'Receive your attested documents via courier or pickup.',
-                        ],
-                    ];
-                @endphp
-
-                @foreach ($workItems as $index => $item)
-                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ $index * 80 }}">
-                        <div class="how-it-card p-4 text-center"
-                            style="border-radius:10px; background:#f8fafc; border:1px solid #e8edf6; min-height:250px;">
-                            <div class="how-it-step"
-                                style="width:54px; height:54px; margin:0 auto 14px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--primary-light)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700;">
-                                {{ $item['step'] ?? $index + 1 }}</div>
-                            <h5 style="font-size:16px; font-weight:700; color:var(--primary);">
-                                {{ $item['title'] ?? 'Step ' . ($index + 1) }}</h5>
-                            <p style="color:#7a8296; font-size:14px; margin-top:8px;">{{ $item['desc'] ?? '' }}</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
     <!-- ============ WHY CHOOSE US ============ -->
     <section style="background: var(--light-bg); padding: 80px 0;">
         <div class="container">
@@ -881,7 +831,7 @@
                             <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
                                 <h6>Office Address</h6>
-                                <p>C-260, Ground Floor, New Ashok Nagar,<br>New Delhi, Delhi - 110096</p>
+                                <p>{{ $siteSettings->address ?? 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi-110096' }}</p>
                             </div>
                         </div>
 
@@ -889,7 +839,7 @@
                             <div class="ci-icon"><i class="fas fa-phone-alt"></i></div>
                             <div>
                                 <h6>Phone Number</h6>
-                                <a href="tel:+919354234462">+91-9354234462</a>
+                                <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>, <a href="tel:01149392112">011-49392112</a>
                             </div>
                         </div>
 
@@ -897,7 +847,7 @@
                             <div class="ci-icon"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <h6>Email Address</h6>
-                                <a href="mailto:info@skdocumentcentre.in">info@skdocumentcentre.in</a>
+                                <a href="mailto:{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}">{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}</a>
                             </div>
                         </div>
 
@@ -911,7 +861,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <a href="https://wa.me/919354234462" target="_blank" rel="noopener noreferrer"
+                            <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919354234462') }}" target="_blank" rel="noopener noreferrer"
                                 class="btn-gold d-inline-flex align-items-center gap-2">
                                 <i class="fab fa-whatsapp fa-lg"></i> Chat on WhatsApp
                             </a>

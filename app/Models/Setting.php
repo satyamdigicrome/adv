@@ -18,6 +18,7 @@ class Setting extends Model
         'instagram_url',
         'twitter_url',
         'linkedin_url',
+        'youtube_url',
         'why_choose_title',
         'why_choose_subtitle',
         'why_choose_items',
@@ -42,6 +43,7 @@ class Setting extends Model
             'instagram_url' => '',
             'twitter_url' => '',
             'linkedin_url' => '',
+            'youtube_url' => '',
             'why_choose_title' => 'Your Trusted Partner',
             'why_choose_subtitle' => 'Explore why customers choose us for service excellence.',
             'why_choose_items' => [

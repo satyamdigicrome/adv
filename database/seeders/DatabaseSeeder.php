@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'about-us',
                 'subtitle' => 'Leading document attestation services since 2009',
                 'meta_title' => 'About S K Document Centre | Trusted Attestation Agency India',
-                'meta_description' => 'Learn about S K Document Centre — India\'s trusted attestation agency with 15+ years of experience in document attestation, apostille and legalization services.',
+                'meta_description' => 'Learn about S K Document Centre — India\'s trusted attestation agency with 11+ years of experience in document attestation, apostille and legalization services.',
                 'content' => '<h2>About S K Document Centre</h2>
 <p>S K Document Centre is a leading provider of specialised document services, dedicated to ensuring that your legal and administrative needs are met with precision and efficiency. Founded by <strong>Sushant Poddar</strong>, we have been serving clients across India since 2009.</p>
 <h3>Our Mission</h3>
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
 </ul>
 <h3>Why Choose Us?</h3>
 <ul>
-<li><strong>15+ Years of Experience</strong> — Established in 2009, we have processed over 50,000 documents</li>
+<li><strong>11+ Years of Experience</strong> — Established in 2009, we have processed over 50,000 documents</li>
 <li><strong>ISO 9001:2015 Certified</strong> — Our processes meet international quality standards</li>
 <li><strong>100% Authentic</strong> — All attestations done through official government channels</li>
 <li><strong>Pan India Service</strong> — Pickup and delivery across all major cities</li>

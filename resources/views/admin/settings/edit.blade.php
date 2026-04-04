@@ -70,6 +70,9 @@
                     <div class="mb-3"><label class="form-label">LinkedIn URL</label><input type="url"
                             name="linkedin_url" class="form-control"
                             value="{{ old('linkedin_url', $setting->linkedin_url) }}"></div>
+                    <div class="mb-3"><label class="form-label">Youtube URL</label><input type="url"
+                            name="youtube_url" class="form-control"
+                            value="{{ old('youtube_url', $setting->youtube_url) }}"></div>
                 </div>
 
                 <div class="form-card mb-4">

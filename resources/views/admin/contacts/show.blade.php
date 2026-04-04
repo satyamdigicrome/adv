@@ -77,9 +77,15 @@
         <div class="form-card mb-4">
             <h6 class="fw-bold mb-4" style="color:var(--primary);font-size:14px;border-bottom:1px solid #f0f3f8;padding-bottom:12px;">Quick Actions</h6>
             <div class="d-grid gap-2">
-                <a href="mailto:{{ $contact->email }}?subject=Re: {{ $contact->subject }}"
-                   class="btn btn-gold-admin text-center">
-                    <i class="fas fa-reply me-2"></i> Reply via Email
+                @php
+                    $subject = urlencode('Re: ' . $contact->subject);
+                    $body = urlencode("Hello {$contact->name},");
+                @endphp
+
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $contact->email }}&su={{ $subject }}&body={{ $body }}"
+                target="_blank"
+                class="btn btn-gold-admin text-center">
+                <i class="fas fa-reply me-2"></i> Reply via Gmail
                 </a>
                 @if($contact->phone)
                 <a href="tel:{{ $contact->phone }}" class="btn btn-primary-admin text-center">

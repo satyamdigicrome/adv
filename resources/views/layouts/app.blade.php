@@ -239,6 +239,8 @@
                                     target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="{{ $siteSettings->instagram_url ?: '#' }}" aria-label="Instagram"
                                     target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="{{ $siteSettings->youtube_url ?: '#' }}" aria-label="Youtube"
+                                    target="_blank"><i class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>

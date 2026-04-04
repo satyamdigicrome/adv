@@ -321,7 +321,7 @@
                     <div class="mb-3">
                         <label class="form-label" style="font-size:13px;font-weight:600;">Step Description</label>
                         <textarea name="steps[${stepCount}][description]" id="step_desc_${stepCount}" class="form-control step-description">
-${stepData ? stepData.description : ''}</textarea>
+                            ${stepData ? stepData.description : ''}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" style="font-size:13px;font-weight:600;">Step Image (optional)</label>
@@ -338,7 +338,7 @@ ${stepData ? stepData.description : ''}</textarea>
                             <input type="checkbox" class="form-check-input" name="steps[${stepCount}][delete_image]" value="1" id="deleteStepImage${stepCount}">
                             <label class="form-check-label" for="deleteStepImage${stepCount}">Remove existing step image</label>
                         </div>
-`;
+                    `;
             }
 
             stepHTML += `

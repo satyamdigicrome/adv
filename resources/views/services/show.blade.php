@@ -208,7 +208,7 @@
                                 Centre?</span>
                         </h3>
                         <div class="row g-3">
-                            @foreach (['100% Authentic Attestation', 'Pan India Service', 'Fast Turnaround Time', 'Transparent Pricing', '15+ Years Experience', 'Dedicated Support'] as $point)
+                            @foreach (['100% Authentic Attestation', 'Pan India Service', 'Fast Turnaround Time', 'Transparent Pricing', '11+ Years Experience', 'Dedicated Support'] as $point)
                                 <div class="col-sm-6">
                                     <div
                                         style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:#f8fafc;">

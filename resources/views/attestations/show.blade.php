@@ -113,7 +113,7 @@
                                 style="position:absolute;bottom:-16px;left:-16px;background:var(--gold);color:var(--primary);border-radius:14px;padding:14px 20px;box-shadow:0 8px 24px rgba(201,168,76,0.4);">
                                 <div
                                     style="font-size:22px;font-weight:800;font-family:'Playfair Display',serif;line-height:1;">
-                                    15+</div>
+                                    11+</div>
                                 <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">
                                     Years Exp.</div>
                             </div>
@@ -204,7 +204,7 @@
                             <span style="border-bottom:3px solid var(--gold);padding-bottom:4px;">Why Choose Us?</span>
                         </h3>
                         <div class="row g-3">
-                            @foreach ([['fas fa-check-double', '100% Authentic', 'All attestations done through official government channels.'], ['fas fa-bolt', 'Fast Processing', 'Express services available for urgent requirements.'], ['fas fa-headset', 'Dedicated Support', 'Assigned relationship manager for your documents.'], ['fas fa-rupee-sign', 'Transparent Pricing', 'No hidden charges. Get full quote upfront.'], ['fas fa-map-marked-alt', 'Pan India Service', 'Pickup and delivery across all major cities in India.'], ['fas fa-award', '15+ Years Exp.', 'Trusted by 10,000+ clients for document attestation.']] as $f)
+                            @foreach ([['fas fa-check-double', '100% Authentic', 'All attestations done through official government channels.'], ['fas fa-bolt', 'Fast Processing', 'Express services available for urgent requirements.'], ['fas fa-headset', 'Dedicated Support', 'Assigned relationship manager for your documents.'], ['fas fa-rupee-sign', 'Transparent Pricing', 'No hidden charges. Get full quote upfront.'], ['fas fa-map-marked-alt', 'Pan India Service', 'Pickup and delivery across all major cities in India.'], ['fas fa-award', '11+ Years Exp.', 'Trusted by 10,000+ clients for document attestation.']] as $f)
                                 <div class="col-md-6">
                                     <div style="display:flex;gap:14px;padding:16px;border-radius:12px;border:1px solid #edf1f8;background:#fafbfd;transition:all 0.2s;"
                                         onmouseover="this.style.borderColor='var(--gold)';this.style.background='rgba(201,168,76,0.04)'"

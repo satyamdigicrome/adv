@@ -27,6 +27,7 @@ class SettingController extends Controller
             'instagram_url' => 'nullable|url|max:255',
             'twitter_url' => 'nullable|url|max:255',
             'linkedin_url' => 'nullable|url|max:255',
+            'youtube_url' => 'nullable|url|max:255',
             'why_choose_title' => 'nullable|string|max:255',
             'why_choose_subtitle' => 'nullable|string|max:500',
             'why_choose_items' => 'nullable|array',
