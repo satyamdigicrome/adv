@@ -6,11 +6,12 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\AttestationController as AdminAttestationController;
 use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\EnquiryController as AdminEnquiryController;
 use App\Http\Controllers\Frontend\ServiceController;
 use App\Http\Controllers\Frontend\AttestationController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\EnquiryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
@@ -73,6 +74,9 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 // Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.send');
+
+// Enquiry modal submissions
+Route::post('/enquiry', [EnquiryController::class, 'store'])->name('enquiry.store');
 
 // Static pages
 Route::get('/attestation-process', function () {
@@ -143,10 +147,10 @@ Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function
     Route::delete('/faqs/{faq}', [FaqController::class, 'destroy'])->name('faqs.destroy');
 
     // Enquiries
-    Route::get('/enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');
-    Route::get('/enquiries/{enquiry}', [EnquiryController::class, 'show'])->name('enquiries.show');
-    Route::patch('/enquiries/{enquiry}/status', [EnquiryController::class, 'updateStatus'])->name('enquiries.status');
-    Route::delete('/enquiries/{enquiry}', [EnquiryController::class, 'destroy'])->name('enquiries.destroy');
+    Route::get('/enquiries', [AdminEnquiryController::class, 'index'])->name('enquiries.index');
+    Route::get('/enquiries/{enquiry}', [AdminEnquiryController::class, 'show'])->name('enquiries.show');
+    Route::patch('/enquiries/{enquiry}/status', [AdminEnquiryController::class, 'updateStatus'])->name('enquiries.status');
+    Route::delete('/enquiries/{enquiry}', [AdminEnquiryController::class, 'destroy'])->name('enquiries.destroy');
 
     // Contacts (Contact Form Submissions)
     Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');

@@ -286,7 +286,8 @@
                             <li>
                                 <i class="fas fa-phone-alt"></i>
                                 <span><a
-                                        href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>, <a href="tel:01149392112">011-49392112</a></span>
+                                        href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>,
+                                    <a href="tel:01149392112">011-49392112</a></span>
                             </li>
                             <li>
                                 <i class="fas fa-envelope"></i>
@@ -326,11 +327,99 @@
         <i class="fas fa-chevron-up"></i>
     </a>
 
+    {{-- Call Float Button --}}
+    <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}" class="call-float"
+        aria-label="Call Us">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
     {{-- WhatsApp Float Button --}}
     <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919354234462') }}"
         class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    {{-- Enquiry Modal --}}
+    <div class="modal fade" id="enquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enquiryModalLabel">Quick Enquiry</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (session('enquiry_success'))
+                        <div class="alert alert-success">
+                            {{ session('enquiry_success') }}
+                        </div>
+                    @endif
+                    @if ($errors->any() && old('enquiry_form'))
+                        <div class="alert alert-danger">
+                            Please correct the highlighted fields and submit again.
+                        </div>
+                    @endif
+
+                    <form id="enquiryForm" action="{{ route('enquiry.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="enquiry_form" value="1">
+                        <input type="hidden" name="page_name"
+                            value="{{ trim($__env->yieldContent('enquiryPageName', 'Website Enquiry')) }}">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                                <input type="text" name="name"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    value="{{ old('name') }}" placeholder="Enter your name" required>
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" name="email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    value="{{ old('email') }}" placeholder="Enter your email" required>
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" name="phone"
+                                    class="form-control @error('phone') is-invalid @enderror"
+                                    value="{{ old('phone') }}" placeholder="Enter your phone number">
+                                @error('phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Address</label>
+                                <input type="text" name="address"
+                                    class="form-control @error('address') is-invalid @enderror"
+                                    value="{{ old('address') }}" placeholder="City, state or address">
+                                @error('address')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Message</label>
+                                <textarea name="message" rows="5" class="form-control @error('message') is-invalid @enderror"
+                                    placeholder="Tell us what you need">{{ old('message') }}</textarea>
+                                @error('message')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="text-end mt-4">
+                            <button type="submit" class="btn btn-primary">Send Enquiry</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -345,6 +434,22 @@
 
     {{-- Custom JS --}}
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var enquiryModalEl = document.getElementById('enquiryModal');
+            if (!enquiryModalEl) {
+                return;
+            }
+            var pageHasEnquiryModal = @json(View::hasSection('enquiryPageName'));
+            var shouldOpen = pageHasEnquiryModal ||
+                {{ session('enquiry_success') ? 'true' : 'false' }} ||
+                {{ old('enquiry_form') ? 'true' : 'false' }};
+            if (shouldOpen) {
+                var enquiryModal = new bootstrap.Modal(enquiryModalEl);
+                enquiryModal.show();
+            }
+        });
+    </script>
 
     {{-- Page specific scripts --}}
     @stack('scripts')

@@ -8,6 +8,8 @@
     'document attestation, apostille india, MEA attestation, embassy attestation, notary services,
     SDM attestation, HRD attestation, certificate legalization, translation services india, attestation services delhi')
 
+@section('enquiryPageName', 'Home Page')
+
 @section('content')
 
     <!-- ============ HERO SECTION ============ -->
@@ -444,7 +446,7 @@
                 <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">
                     {{ $siteSettings->how_it_works_subtitle ??
                         'We follow a streamlined, transparent process to ensure your documents are attested quickly and
-                                        accurately.' }}
+                                                            accurately.' }}
                 </p>
             </div>
 
@@ -831,7 +833,8 @@
                             <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
                                 <h6>Office Address</h6>
-                                <p>{{ $siteSettings->address ?? 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi-110096' }}</p>
+                                <p>{{ $siteSettings->address ?? 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi-110096' }}
+                                </p>
                             </div>
                         </div>
 
@@ -839,7 +842,9 @@
                             <div class="ci-icon"><i class="fas fa-phone-alt"></i></div>
                             <div>
                                 <h6>Phone Number</h6>
-                                <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>, <a href="tel:01149392112">011-49392112</a>
+                                <a
+                                    href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>,
+                                <a href="tel:01149392112">011-49392112</a>
                             </div>
                         </div>
 
@@ -847,7 +852,8 @@
                             <div class="ci-icon"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <h6>Email Address</h6>
-                                <a href="mailto:{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}">{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}</a>
+                                <a
+                                    href="mailto:{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}">{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}</a>
                             </div>
                         </div>
 
@@ -861,7 +867,8 @@
                         </div>
 
                         <div class="mt-4">
-                            <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919354234462') }}" target="_blank" rel="noopener noreferrer"
+                            <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919354234462') }}"
+                                target="_blank" rel="noopener noreferrer"
                                 class="btn-gold d-inline-flex align-items-center gap-2">
                                 <i class="fab fa-whatsapp fa-lg"></i> Chat on WhatsApp
                             </a>

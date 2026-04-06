@@ -1,10 +1,14 @@
 @extends('layouts.app')
 
 @section('meta_title', 'Blog – Attestation Tips, Country Guides & News | S K Document Centre')
-@section('meta_description', 'Read our latest blog posts on document attestation, apostille, embassy attestation,
+@section('meta_description',
+    'Read our latest blog posts on document attestation, apostille, embassy attestation,
     country guides, translation tips and more from S K Document Centre.')
-@section('meta_keywords', 'document attestation blog, apostille guide, embassy attestation tips, MEA attestation,
+@section('meta_keywords',
+    'document attestation blog, apostille guide, embassy attestation tips, MEA attestation,
     attestation news india')
+
+@section('enquiryPageName', 'Blog Page')
 
 @section('content')
 

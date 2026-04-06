@@ -4,6 +4,8 @@
 @section('meta_description', $blog->meta_description ?: $blog->short_description)
 @section('meta_keywords', $blog->meta_keywords)
 
+@section('enquiryPageName', 'Blog: ' . $blog->title)
+
 @section('content')
 
     <!-- ============ HERO ============ -->
