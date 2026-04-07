@@ -218,4 +218,23 @@ class AttestationController extends Controller
         $attestation->update(['is_active' => !$attestation->is_active]);
         return back()->with('success', 'Status updated.');
     }
+
+    public function duplicate(Attestation $attestation)
+    {
+        $newAttestation = $attestation->replicate();
+        $newAttestation->title = 'Copy of ' . $attestation->title;
+        $newAttestation->slug = Str::slug($newAttestation->title);
+        // Clear images
+        $newAttestation->banner_image = null;
+        $newAttestation->main_image = null;
+        $newAttestation->steps_image = null;
+        // Clear step images
+        if ($newAttestation->steps && is_array($newAttestation->steps)) {
+            foreach ($newAttestation->steps as &$step) {
+                $step['image'] = null;
+            }
+        }
+        $newAttestation->save();
+        return redirect()->route('admin.attestations.edit', $newAttestation)->with('success', 'Attestation duplicated successfully. Please update the title, slug, and upload new images.');
+    }
 }

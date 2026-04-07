@@ -215,4 +215,23 @@ class ServiceController extends Controller
         $service->update(['is_active' => !$service->is_active]);
         return back()->with('success', 'Service status updated.');
     }
+
+    public function duplicate(Service $service)
+    {
+        $newService = $service->replicate();
+        $newService->title = 'Copy of ' . $service->title;
+        $newService->slug = Str::slug($newService->title);
+        // Clear images
+        $newService->banner_image = null;
+        $newService->main_image = null;
+        $newService->steps_image = null;
+        // Clear step images
+        if ($newService->steps && is_array($newService->steps)) {
+            foreach ($newService->steps as &$step) {
+                $step['image'] = null;
+            }
+        }
+        $newService->save();
+        return redirect()->route('admin.services.edit', $newService)->with('success', 'Service duplicated successfully. Please update the title, slug, and upload new images.');
+    }
 }

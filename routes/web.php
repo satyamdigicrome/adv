@@ -128,6 +128,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function
     Route::put('/services/{service}', [AdminServiceController::class, 'update'])->name('services.update');
     Route::delete('/services/{service}', [AdminServiceController::class, 'destroy'])->name('services.destroy');
     Route::patch('/services/{service}/toggle', [AdminServiceController::class, 'toggleStatus'])->name('services.toggle');
+    Route::post('/services/{service}/duplicate', [AdminServiceController::class, 'duplicate'])->name('services.duplicate');
 
     // Attestations CRUD
     Route::get('/attestations', [AdminAttestationController::class, 'index'])->name('attestations.index');
@@ -137,6 +138,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function
     Route::put('/attestations/{attestation}', [AdminAttestationController::class, 'update'])->name('attestations.update');
     Route::delete('/attestations/{attestation}', [AdminAttestationController::class, 'destroy'])->name('attestations.destroy');
     Route::patch('/attestations/{attestation}/toggle', [AdminAttestationController::class, 'toggleStatus'])->name('attestations.toggle');
+    Route::post('/attestations/{attestation}/duplicate', [AdminAttestationController::class, 'duplicate'])->name('attestations.duplicate');
 
     // FAQs CRUD
     Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
