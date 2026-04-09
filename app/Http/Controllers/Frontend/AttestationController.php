@@ -12,7 +12,7 @@ class AttestationController extends Controller
 {
     public function index()
     {
-        $attestations = Attestation::active()->ordered()->paginate(12);
+        $attestations = Attestation::active()->ordered()->get();
         return view('attestations.index', compact('attestations'));
     }
 

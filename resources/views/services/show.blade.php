@@ -81,7 +81,7 @@
 
                     <!-- Trust badges -->
                     <div style="display:flex;gap:20px;margin-top:28px;flex-wrap:wrap;">
-                        @foreach (['Govt. Approved', '100% Genuine', 'Fast Processing'] as $b)
+                        @foreach (['100% Genuine', 'Fast Processing'] as $b)
                             <div style="display:flex;align-items:center;gap:6px;">
                                 <i class="fas fa-check-circle" style="color:var(--gold);font-size:12px;"></i>
                                 <span

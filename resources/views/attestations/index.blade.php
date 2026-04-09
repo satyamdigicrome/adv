@@ -115,7 +115,7 @@
     <div style="background:var(--gold);padding:18px 0;">
         <div class="container">
             <div class="row g-0 text-center">
-                @foreach (['10,000+|Documents Processed', '15+|Years Experience', '50+|Countries Covered', '99%|Success Rate'] as $stat)
+                @foreach (['10,000+|Documents Processed', '11+|Years Experience', '100+|Countries Covered', '99%|Success Rate'] as $stat)
                     @php [$num, $label] = explode('|', $stat); @endphp
                     <div class="col-6 col-md-3" style="border-right:1px solid rgba(15,32,68,0.15);">
                         <div style="padding:8px 16px;">
@@ -151,7 +151,7 @@
                         </div>
                         <h2
                             style="font-family:'Playfair Display',serif;color:var(--primary);font-size:clamp(26px,4vw,36px);font-weight:700;margin:0;">
-                            {{ $attestations->total() }} Attestation Services Available
+                            {{ $attestations->count() }} Attestation Services Available
                         </h2>
                     </div>
                     <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
@@ -269,9 +269,9 @@
                     <p style="color:#8a99b0;font-size:15px;">No attestation services found matching your search.</p>
                 </div>
 
-                @if ($attestations->hasPages())
+                {{-- @if ($attestations->hasPages())
                     <div class="mt-5 d-flex justify-content-center">{{ $attestations->links() }}</div>
-                @endif
+                @endif --}}
 
             @endif
         </div>

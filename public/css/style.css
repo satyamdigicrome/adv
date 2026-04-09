@@ -231,6 +231,13 @@ h6 {
     padding-left: 26px;
 }
 
+/* Mega Menu Scroll */
+.mega-menu {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 /* Navbar Toggler */
 .navbar-toggler {
     border: 2px solid var(--primary);

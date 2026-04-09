@@ -91,7 +91,7 @@
 
                     <!-- Trust Badges -->
                     <div style="display:flex;gap:24px;margin-top:32px;flex-wrap:wrap;">
-                        @foreach (['Govt. Approved', '100% Genuine', 'Fast Processing', 'Pan India'] as $badge)
+                        @foreach (['100% Genuine', 'Fast Processing', 'Pan India'] as $badge)
                             <div style="display:flex;align-items:center;gap:6px;">
                                 <i class="fas fa-shield-alt" style="color:var(--gold);font-size:12px;"></i>
                                 <span
