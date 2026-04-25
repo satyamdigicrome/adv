@@ -43,14 +43,16 @@
             @foreach($services as $index => $service)
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 80 }}">
                 <div class="service-card h-100">
-                    @if($service->main_image)
-                        <img src="{{ $service->main_image_url }}" alt="{{ $service->title }}"
-                             style="width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:20px;">
-                    @else
-                        <div class="service-icon">
-                            <i class="{{ $service->icon ?? 'fas fa-file-alt' }}"></i>
-                        </div>
-                    @endif
+                    <a href="{{ route('services.show', $service->slug) }}">
+                        @if($service->main_image)
+                            <img src="{{ $service->main_image_url }}" alt="{{ $service->title }}"
+                                style="width:100%; height:180px; object-fit:cover; border-radius:10px; margin-bottom:20px;">
+                        @else
+                            <div class="service-icon">
+                                <i class="{{ $service->icon ?? 'fas fa-file-alt' }}"></i>
+                            </div>
+                        @endif
+                    </a>
                     <h5>{{ $service->title }}</h5>
                     @if($service->short_description)
                         <p>{{ $service->short_description }}</p>

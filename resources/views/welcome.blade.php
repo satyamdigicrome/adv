@@ -440,7 +440,7 @@
     <section class="process-section">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <span class="section-tag">How It Works</span>
+                {{-- <span class="section-tag">How It Works</span> --}}
                 <h2 class="section-title">{{ $siteSettings->how_it_works_title ?? 'Attestation Process' }}</h2>
                 <div class="section-divider"></div>
                 <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">

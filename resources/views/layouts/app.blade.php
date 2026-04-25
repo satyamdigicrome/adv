@@ -28,6 +28,9 @@
     <meta name="twitter:description" content="@yield('twitter_description', 'Trusted document attestation services across India.')">
     <meta name="twitter:image" content="@yield('twitter_image', asset('images/og-image.jpg'))">
 
+    {{-- Google AdSense Verification --}}
+    <meta name="google-site-verification" content="f08c47fec0942fa0" />
+
     {{-- Favicon --}}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
@@ -53,6 +56,9 @@
 
     {{-- Page specific styles --}}
     @stack('styles')
+
+    {{-- Google AdSense Script --}}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9835659731888816" crossorigin="anonymous"></script>
 
     {{-- Structured Data --}}
     <script type="application/ld+json">
@@ -233,8 +239,8 @@
                             <div class="footer-social">
                                 <a href="{{ $siteSettings->facebook_url ?: '#' }}" aria-label="Facebook"
                                     target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                <a href="{{ $siteSettings->twitter_url ?: '#' }}" aria-label="Twitter"
-                                    target="_blank"><i class="fab fa-twitter"></i></a>
+                                {{-- <a href="{{ $siteSettings->twitter_url ?: '#' }}" aria-label="Twitter"
+                                    target="_blank"><i class="fab fa-twitter"></i></a> --}}
                                 <a href="{{ $siteSettings->linkedin_url ?: '#' }}" aria-label="LinkedIn"
                                     target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                 <a href="{{ $siteSettings->instagram_url ?: '#' }}" aria-label="Instagram"

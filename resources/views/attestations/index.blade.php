@@ -151,7 +151,7 @@
                         </div>
                         <h2
                             style="font-family:'Playfair Display',serif;color:var(--primary);font-size:clamp(26px,4vw,36px);font-weight:700;margin:0;">
-                            {{ $attestations->count() }} Attestation Services Available
+                            All Attestation Services Available
                         </h2>
                     </div>
                     <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
@@ -175,41 +175,42 @@
                                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(15,32,68,0.06)'">
 
                                 <!-- Card Image/Header -->
-                                <div style="position:relative;height:200px;overflow:hidden;">
-                                    @if ($att->main_image)
-                                        <img src="{{ asset('storage/' . $att->main_image) }}" alt="{{ $att->title }}"
-                                            style="width:100%;height:100%;object-fit:cover;"
-                                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                                        <div
-                                            style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#0f2044,#1a3460);align-items:center;justify-content:center;">
-                                            <i class="{{ $att->icon ?? 'fas fa-certificate' }}"
-                                                style="font-size:48px;color:var(--gold);opacity:0.5;"></i>
-                                        </div>
-                                    @else
-                                        <div
-                                            style="width:100%;height:100%;background:linear-gradient(135deg,#0f2044,#1a3460);display:flex;align-items:center;justify-content:center;">
-                                            <i class="{{ $att->icon ?? 'fas fa-certificate' }}"
-                                                style="font-size:48px;color:var(--gold);opacity:0.5;"></i>
-                                        </div>
-                                    @endif
+                                <a href="{{ route('attestations.show', $att->slug) }}">
+                                    <div style="position:relative;height:200px;overflow:hidden;">
+                                        @if ($att->main_image)
+                                                <img src="{{ asset('storage/' . $att->main_image) }}" alt="{{ $att->title }}"
+                                                    style="width:100%;height:100%;object-fit:cover;"
+                                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                                <div
+                                                    style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#0f2044,#1a3460);align-items:center;justify-content:center;">
+                                                    <i class="{{ $att->icon ?? 'fas fa-certificate' }}"
+                                                        style="font-size:48px;color:var(--gold);opacity:0.5;"></i>
+                                                </div>
+                                        @else
+                                            <div
+                                                style="width:100%;height:100%;background:linear-gradient(135deg,#0f2044,#1a3460);display:flex;align-items:center;justify-content:center;">
+                                                <i class="{{ $att->icon ?? 'fas fa-certificate' }}"
+                                                    style="font-size:48px;color:var(--gold);opacity:0.5;"></i>
+                                            </div>
+                                        @endif
 
-                                    <!-- Country Badge -->
-                                    @if ($att->country)
-                                        <div style="position:absolute;top:14px;left:14px;">
-                                            <span
-                                                style="background:rgba(15,32,68,0.85);backdrop-filter:blur(10px);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:50px;border:1px solid rgba(201,168,76,0.3);">
-                                                <i class="fas fa-map-marker-alt me-1" style="color:var(--gold);"></i>
-                                                {{ $att->country }}
-                                            </span>
-                                        </div>
-                                    @endif
+                                        <!-- Country Badge -->
+                                        @if ($att->country)
+                                            <div style="position:absolute;top:14px;left:14px;">
+                                                <span
+                                                    style="background:rgba(15,32,68,0.85);backdrop-filter:blur(10px);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:50px;border:1px solid rgba(201,168,76,0.3);">
+                                                    <i class="fas fa-map-marker-alt me-1" style="color:var(--gold);"></i>
+                                                    {{ $att->country }}
+                                                </span>
+                                            </div>
+                                        @endif
 
-                                    <!-- Overlay gradient -->
-                                    <div
-                                        style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(15,32,68,0.7));">
+                                        <!-- Overlay gradient -->
+                                        <div
+                                            style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(15,32,68,0.7));">
+                                        </div>
                                     </div>
-                                </div>
-
+                                </a>
                                 <!-- Card Body -->
                                 <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
                                     <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
