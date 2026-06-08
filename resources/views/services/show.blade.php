@@ -305,7 +305,7 @@
                             <div class="mb-3">
                                 <label
                                     style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:5px;display:block;">
-                                    Address <span style="color:#ff8080;">*</span>
+                                    Address 
                                 </label>
                                 <textarea name="address" class="form-control @error('address') is-invalid @enderror" rows="2"
                                     placeholder="Your city / full address" required

@@ -33,7 +33,7 @@ class AttestationController extends Controller
             'name'    => 'required|string|max:100',
             'email'   => 'required|email|max:150',
             'phone'   => 'required|string|max:20',
-            'address' => 'required|string|max:500',
+            'address' => 'nullable|string|max:500',
             'message' => 'nullable|string|max:1000',
         ]);
 
