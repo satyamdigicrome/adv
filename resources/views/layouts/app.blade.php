@@ -33,7 +33,6 @@
 
     {{-- Favicon --}}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,27 +60,77 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9835659731888816" crossorigin="anonymous"></script>
 
     {{-- Structured Data --}}
+    @verbatim
     <script type="application/ld+json">
     {
-        "@@context": "https://schema.org",
-        "@@type": "LegalService",
-        "name": "S K Document Centre",
-        "description": "Leading provider of document attestation, apostille, MEA, embassy attestation and translation services across India.",
-        "url": "{{ url('/') }}",
-        "telephone": "{{ $siteSettings->phone ?? '+91-9354234462' }}",
-        "email": "{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}",
-        "address": {
-            "@@type": "PostalAddress",
-            "streetAddress": "{{ $siteSettings->address ?? 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi 110096' }}",
-            "addressLocality": "New Delhi",
-            "addressRegion": "Delhi",
-            "postalCode": "110096",
-            "addressCountry": "IN"
-        },
-        "openingHours": "Mo-Sa 09:00-18:00",
-        "sameAs": []
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+            "@type": "LegalService",
+            "@id": "https://skdocumentcentre.com/#business",
+            "name": "S K Document Centre",
+            "url": "https://skdocumentcentre.com/",
+            "description": "S K Document Centre provides document attestation, apostille, MEA attestation, embassy legalization, notary attestation, SDM attestation, MOFA attestation, PCC, and translation services across India.",
+            "telephone": "+91-9354234462",
+            "email": "info@skdocumentcentre.in",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "C-260, Ground Floor, New Ashok Nagar",
+                "addressLocality": "New Delhi",
+                "addressRegion": "Delhi",
+                "postalCode": "110096",
+                "addressCountry": "IN"
+            },
+            "areaServed": {
+                "@type": "Country",
+                "name": "India"
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+                ],
+                "opens": "09:00",
+                "closes": "18:00"
+            },
+            "priceRange": "$$"
+            },
+            {
+            "@type": "WebSite",
+            "@id": "https://skdocumentcentre.com/#website",
+            "url": "https://skdocumentcentre.com/",
+            "name": "S K Document Centre",
+            "publisher": {
+                "@id": "https://skdocumentcentre.com/#business"
+            },
+            "inLanguage": "en-IN"
+            },
+            {
+            "@type": "WebPage",
+            "@id": "https://skdocumentcentre.com/#webpage",
+            "url": "https://skdocumentcentre.com/",
+            "name": "S K Document Centre | Document Attestation & Legalization Services India",
+            "description": "Trusted document attestation, apostille, MEA attestation, embassy legalization, notary, SDM, MOFA, PCC, and translation services across India.",
+            "isPartOf": {
+                "@id": "https://skdocumentcentre.com/#website"
+            },
+            "about": {
+                "@id": "https://skdocumentcentre.com/#business"
+            },
+            "mainEntity": {
+                "@id": "https://skdocumentcentre.com/#business"
+            },
+            "inLanguage": "en-IN"
+            }
+        ]
     }
     </script>
+    @endverbatim
 </head>
 
 <body>

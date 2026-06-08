@@ -113,8 +113,13 @@
                 <i class="fas fa-bolt me-2" style="color:var(--gold);"></i> Quick Actions
             </h6>
             <div class="d-grid gap-2">
-                <a href="mailto:{{ $enquiry->email }}" class="btn btn-primary-admin text-start">
-                    <i class="fas fa-envelope me-2"></i> Send Email Reply
+                @php
+                    $body = urlencode("Hello {$enquiry->name},");
+                @endphp
+
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $enquiry->email }}&body={{ $body }}"
+                    target="_blank" class="btn btn-primary-admin text-start">
+                    <i class="fas fa-envelope me-2"></i> Reply via Gmail
                 </a>
                 <a href="tel:{{ $enquiry->phone }}" class="btn btn-gold-admin text-start">
                     <i class="fas fa-phone me-2"></i> Call Now
