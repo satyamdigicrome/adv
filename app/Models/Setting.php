@@ -36,7 +36,7 @@ class Setting extends Model
     {
         return static::firstOrCreate([], [
             'site_name' => config('app.name', 'S K Document Centre'),
-            'phone' => '+91-9354234462',
+            'phone' => '+91-9310970010',
             'email' => 'info@skdocumentcentre.in',
             'address' => 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi – 110096',
             'facebook_url' => '',

@@ -57,11 +57,12 @@
     @stack('styles')
 
     {{-- Google AdSense Script --}}
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9835659731888816" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9835659731888816"
+        crossorigin="anonymous"></script>
 
     {{-- Structured Data --}}
     @verbatim
-    <script type="application/ld+json">
+        <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@graph": [
@@ -71,7 +72,7 @@
             "name": "S K Document Centre",
             "url": "https://skdocumentcentre.com/",
             "description": "S K Document Centre provides document attestation, apostille, MEA attestation, embassy legalization, notary attestation, SDM attestation, MOFA attestation, PCC, and translation services across India.",
-            "telephone": "+91-9354234462",
+            "telephone": "+91-9310970010",
             "email": "info@skdocumentcentre.in",
             "address": {
                 "@type": "PostalAddress",
@@ -141,8 +142,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6">
                     <div class="top-bar-left">
-                        <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}"><i
-                                class="fas fa-phone-alt"></i> {{ $siteSettings->phone ?? '+91-9354234462' }}</a>
+                        <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9310970010') }}"><i
+                                class="fas fa-phone-alt"></i> {{ $siteSettings->phone ?? '+91-9310970010' }}</a>
                         <a href="mailto:{{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}"><i
                                 class="fas fa-envelope"></i>
                             {{ $siteSettings->email ?? 'info@skdocumentcentre.in' }}</a>
@@ -268,6 +269,45 @@
         @yield('content')
     </main>
 
+    <!-- Pickup & Drop Facility Section -->
+    <section class="pickup-drop-section">
+        <div class="container">
+            <div class="pickup-card">
+                <div class="pickup-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+
+                <div class="pickup-content">
+                    <h3>Pickup & Drop Facility Available</h3>
+                    <p>
+                        We provide convenient doorstep pickup and delivery of your
+                        documents across India. No need to visit our office —
+                        simply schedule a pickup and our team will handle the rest
+                        safely and securely.
+                    </p>
+
+                    <div class="pickup-features">
+                        <div class="feature-item">
+                            ✅ Doorstep Pickup
+                        </div>
+                        <div class="feature-item">
+                            ✅ Safe Document Handling
+                        </div>
+                        <div class="feature-item">
+                            ✅ Fast Processing
+                        </div>
+                        <div class="feature-item">
+                            ✅ Doorstep Delivery
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pickup-icon secondary">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+            </div>
+        </div>
+    </section>
     {{-- Footer --}}
     <footer class="site-footer">
         <div class="footer-top">
@@ -341,7 +381,7 @@
                             <li>
                                 <i class="fas fa-phone-alt"></i>
                                 <span><a
-                                        href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>,
+                                        href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9310970010') }}">{{ $siteSettings->phone ?? '+91-9310970010' }}</a>,
                                     <a href="tel:01149392112">011-49392112</a></span>
                             </li>
                             <li>
@@ -383,13 +423,13 @@
     </a>
 
     {{-- Call Float Button --}}
-    <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}" class="call-float"
+    <a href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9310970010') }}" class="call-float"
         aria-label="Call Us">
         <i class="fas fa-phone-alt"></i>
     </a>
 
     {{-- WhatsApp Float Button --}}
-    <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919354234462') }}"
+    <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919310970010') }}"
         class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>

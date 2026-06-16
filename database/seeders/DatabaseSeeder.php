@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
 <h3>Data Security</h3>
 <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Your documents are handled with the utmost care and confidentiality.</p>
 <h3>Contact Us</h3>
-<p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@skdocumentcentre.in">info@skdocumentcentre.in</a> or call <a href="tel:+919354234462">+91-9354234462</a>.</p>',
+<p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@skdocumentcentre.in">info@skdocumentcentre.in</a> or call <a href="tel:+919310970010">+91-9310970010</a>.</p>',
             ],
             [
                 'title' => 'Terms & Conditions',
@@ -145,7 +145,7 @@ class DatabaseSeeder extends Seeder
         // Default site settings
         \App\Models\Setting::firstOrCreate([], [
             'site_name' => config('app.name', 'S K Document Centre'),
-            'phone' => '+91-9354234462',
+            'phone' => '+91-9310970010',
             'email' => 'info@skdocumentcentre.in',
             'address' => 'C-260, Ground Floor, New Ashok Nagar, New Delhi, Delhi – 110096',
             'facebook_url' => '',

@@ -3,7 +3,7 @@
 @section('meta_title', 'Contact Us | S K Document Centre')
 @section('meta_description',
     'Get in touch with S K Document Centre for document attestation, apostille, MEA, embassy
-    attestation services. Located in New Delhi. Call +91-9354234462.')
+    attestation services. Located in New Delhi. Call +91-9310970010.')
 @section('meta_keywords', 'contact attestation services, S K Document Centre contact, document attestation Delhi')
 @section('canonical', route('contact'))
 
@@ -41,7 +41,7 @@
         <div class="container">
             <div class="row g-0 text-center">
                 @php
-                    $sitePhone = $siteSettings->phone ?? '+91-9354234462';
+                    $sitePhone = $siteSettings->phone ?? '+91-9310970010';
                     $phoneHref = 'tel:' . preg_replace('/\D/', '', $sitePhone);
                     $siteEmail = $siteSettings->email ?? 'info@skdocumentcentre.in';
                     $siteAddress = $siteSettings->address ?? 'C-260, New Ashok Nagar, New Delhi-110096';
@@ -197,7 +197,7 @@
                             style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--primary);margin-bottom:24px;">
                             Our Office
                         </h3>
-                        @foreach ([['fas fa-map-marker-alt', 'Address', 'C-260, Ground Floor, New Ashok Nagar,<br>New Delhi, Delhi – 110096'], ['fas fa-phone-alt', 'Phone', '<a href="tel:+919354234462" style="color:var(--primary);font-weight:700;text-decoration:none;">+91-9354234462</a>'], ['fas fa-envelope', 'Email', '<a href="mailto:info@skdocumentcentre.in" style="color:var(--primary);font-weight:700;text-decoration:none;">info@skdocumentcentre.in</a>'], ['fas fa-clock', 'Hours', 'Monday – Saturday: 9:00 AM – 6:00 PM<br><span style="color:#8a99b0;font-size:12px;">Closed on Sundays & National Holidays</span>']] as $info)
+                        @foreach ([['fas fa-map-marker-alt', 'Address', 'C-260, Ground Floor, New Ashok Nagar,<br>New Delhi, Delhi – 110096'], ['fas fa-phone-alt', 'Phone', '<a href="tel:+919310970010" style="color:var(--primary);font-weight:700;text-decoration:none;">+91-9310970010</a>'], ['fas fa-envelope', 'Email', '<a href="mailto:info@skdocumentcentre.in" style="color:var(--primary);font-weight:700;text-decoration:none;">info@skdocumentcentre.in</a>'], ['fas fa-clock', 'Hours', 'Monday – Saturday: 9:00 AM – 6:00 PM<br><span style="color:#8a99b0;font-size:12px;">Closed on Sundays & National Holidays</span>']] as $info)
                             <div style="display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;">
                                 <div
                                     style="width:44px;height:44px;background:rgba(201,168,76,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -219,7 +219,7 @@
                                 style="font-size:12px;font-weight:700;color:#8a99b0;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">
                                 Follow Us</div>
                             <div style="display:flex;gap:10px;">
-                                @foreach ([['fab fa-facebook-f', '#', '#1877f2'], ['fab fa-twitter', '#', '#1da1f2'], ['fab fa-instagram', '#', '#e1306c'], ['fab fa-linkedin-in', '#', '#0a66c2'], ['fab fa-whatsapp', 'https://wa.me/919354234462', '#25D366']] as $s)
+                                @foreach ([['fab fa-facebook-f', '#', '#1877f2'], ['fab fa-twitter', '#', '#1da1f2'], ['fab fa-instagram', '#', '#e1306c'], ['fab fa-linkedin-in', '#', '#0a66c2'], ['fab fa-whatsapp', 'https://wa.me/919310970010', '#25D366']] as $s)
                                     <a href="{{ $s[1] }}" target="_blank"
                                         style="width:36px;height:36px;border-radius:8px;background:rgba(15,32,68,0.06);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.2s;"
                                         onmouseover="this.style.background='{{ $s[2] }}';this.querySelector('i').style.color='#fff'"
@@ -241,7 +241,8 @@
                             title="S K Document Centre Location">
                         </iframe>
                         <div style="background:#fff;padding:14px 18px;border-top:1px solid #edf1f8;">
-                            <a href="https://maps.google.com/?q=C-260,+Ground+Floor,+New+Ashok+Nagar,+New+Delhi,+110096" target="_blank"
+                            <a href="https://maps.google.com/?q=C-260,+Ground+Floor,+New+Ashok+Nagar,+New+Delhi,+110096"
+                                target="_blank"
                                 style="font-size:13px;font-weight:700;color:var(--primary);text-decoration:none;">
                                 <i class="fas fa-directions me-2" style="color:var(--gold);"></i>
                                 Get Directions on Google Maps

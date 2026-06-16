@@ -261,7 +261,7 @@
                             onmouseout="this.style.background='var(--gold)'">
                             <i class="fas fa-headset me-2"></i> Get Free Consultation
                         </a>
-                        <a href="https://wa.me/919354234462" target="_blank"
+                        <a href="https://wa.me/919310970010" target="_blank"
                             style="display:block;background:rgba(255,255,255,0.1);color:#fff;padding:11px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;margin-top:10px;"
                             onmouseover="this.style.background='rgba(255,255,255,0.15)'"
                             onmouseout="this.style.background='rgba(255,255,255,0.1)'">

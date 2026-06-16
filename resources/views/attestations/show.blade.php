@@ -370,7 +370,7 @@
                             style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px;">
                             <i class="fas fa-headset me-2" style="color:var(--gold);"></i> Speak to an Expert
                         </h6>
-                        <a href="tel:+919354234462"
+                        <a href="tel:+919310970010"
                             style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:#f8fafc;border:1px solid #edf1f8;text-decoration:none;margin-bottom:8px;transition:all 0.2s;"
                             onmouseover="this.style.borderColor='var(--gold)'"
                             onmouseout="this.style.borderColor='#edf1f8'">
@@ -380,10 +380,10 @@
                             </div>
                             <div>
                                 <div style="font-size:12px;color:#8a99b0;">Call Us Now</div>
-                                <div style="font-size:14px;font-weight:700;color:var(--primary);">+91-9354234462</div>
+                                <div style="font-size:14px;font-weight:700;color:var(--primary);">+91-9310970010</div>
                             </div>
                         </a>
-                        <a href="https://wa.me/919354234462?text=Hi, I need {{ urlencode($attestation->title) }} assistance."
+                        <a href="https://wa.me/919310970010?text=Hi, I need {{ urlencode($attestation->title) }} assistance."
                             target="_blank"
                             style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:#f8fafc;border:1px solid #edf1f8;text-decoration:none;transition:all 0.2s;"
                             onmouseover="this.style.borderColor='#25D366'" onmouseout="this.style.borderColor='#edf1f8'">

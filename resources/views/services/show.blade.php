@@ -71,7 +71,7 @@
                             onmouseout="this.style.transform='';this.style.boxShadow=''">
                             <i class="fas fa-paper-plane"></i> Enquire Now
                         </a>
-                        <a href="tel:+919354234462"
+                        <a href="tel:+919310970010"
                             style="background:rgba(255,255,255,0.08);color:#fff;font-weight:600;font-size:14px;padding:13px 24px;border-radius:50px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;"
                             onmouseover="this.style.background='rgba(255,255,255,0.15)'"
                             onmouseout="this.style.background='rgba(255,255,255,0.08)'">
@@ -305,7 +305,7 @@
                             <div class="mb-3">
                                 <label
                                     style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:5px;display:block;">
-                                    Address 
+                                    Address
                                 </label>
                                 <textarea name="address" class="form-control @error('address') is-invalid @enderror" rows="2"
                                     placeholder="Your city / full address" required
@@ -373,12 +373,12 @@
                         <h6 style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:14px;">
                             <i class="fas fa-headset me-2" style="color:var(--gold);"></i> Need Help?
                         </h6>
-                        <a href="tel:+919354234462"
+                        <a href="tel:+919310970010"
                             style="display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:10px;">
                             <i class="fas fa-phone" style="color:var(--primary);font-size:14px;"></i>
-                            <span style="font-size:13.5px;font-weight:600;color:var(--primary);">+91-9354234462</span>
+                            <span style="font-size:13.5px;font-weight:600;color:var(--primary);">+91-9310970010</span>
                         </a>
-                        <a href="https://wa.me/919354234462" target="_blank"
+                        <a href="https://wa.me/919310970010" target="_blank"
                             style="display:flex;align-items:center;gap:10px;text-decoration:none;">
                             <i class="fab fa-whatsapp" style="color:#25D366;font-size:16px;"></i>
                             <span style="font-size:13.5px;font-weight:600;color:var(--primary);">WhatsApp Us</span>

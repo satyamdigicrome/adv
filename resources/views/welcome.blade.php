@@ -446,7 +446,7 @@
                 <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">
                     {{ $siteSettings->how_it_works_subtitle ??
                         'We follow a streamlined, transparent process to ensure your documents are attested quickly and
-                                                            accurately.' }}
+                                                                                accurately.' }}
                 </p>
             </div>
 
@@ -843,7 +843,7 @@
                             <div>
                                 <h6>Phone Number</h6>
                                 <a
-                                    href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9354234462') }}">{{ $siteSettings->phone ?? '+91-9354234462' }}</a>,
+                                    href="tel:{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '+91-9310970010') }}">{{ $siteSettings->phone ?? '+91-9310970010' }}</a>,
                                 <a href="tel:01149392112">011-49392112</a>
                             </div>
                         </div>
@@ -867,7 +867,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919354234462') }}"
+                            <a href="https://wa.me/{{ preg_replace('/\\D/', '', $siteSettings->phone ?? '919310970010') }}"
                                 target="_blank" rel="noopener noreferrer"
                                 class="btn-gold d-inline-flex align-items-center gap-2">
                                 <i class="fab fa-whatsapp fa-lg"></i> Chat on WhatsApp
@@ -941,7 +941,7 @@
                         across India.</p>
                 </div>
                 <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-                    <a href="tel:+919354234462" class="btn-primary-dark me-2 mb-2 d-inline-block">
+                    <a href="tel:+919310970010" class="btn-primary-dark me-2 mb-2 d-inline-block">
                         <i class="fas fa-phone-alt me-2"></i> Call Us Now
                     </a>
                     <a href="{{ url('/contact') }}" class="btn-outline-gold mb-2 d-inline-block"
