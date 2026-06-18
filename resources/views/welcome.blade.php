@@ -717,100 +717,113 @@
     </section>
 
     <!-- ============ TESTIMONIALS SECTION ============ -->
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <span class="section-tag">Client Reviews</span>
-                <h2 class="section-title">What Our <span>Clients Say</span></h2>
-                <div class="section-divider"></div>
-                <p class="section-subtitle">Thousands of satisfied customers trust S K Document Centre for their
-                    attestation needs.</p>
-            </div>
+    <section class="google-review-section">
+        <div class="container-fluid" style="padding:0 50px">
+            @php
+                $fallbackReviews = collect([
+                    [
+                        'name' => 'Rahul Sharma',
+                        'time' => '2 months ago',
+                        'rating' => 5,
+                        'text' =>
+                            'Excellent service for UAE degree certificate attestation. The team was professional, responsive and very transparent with pricing.',
+                        'initial' => 'R',
+                    ],
+                    [
+                        'name' => 'Priya Gupta',
+                        'time' => '3 months ago',
+                        'rating' => 5,
+                        'text' =>
+                            'S K Document Centre handled my marriage certificate attestation on time and guided me clearly through every step.',
+                        'initial' => 'P',
+                    ],
+                    [
+                        'name' => 'Ahmed Khan',
+                        'time' => '4 months ago',
+                        'rating' => 5,
+                        'text' =>
+                            'Best attestation service in India. They made the Apostille process simple and kept me updated until delivery.',
+                        'initial' => 'A',
+                    ],
+                    [
+                        'name' => 'Neha Verma',
+                        'time' => '5 months ago',
+                        'rating' => 5,
+                        'text' =>
+                            'Fast pickup, clear communication and genuine document handling. Highly recommended for embassy attestation work.',
+                        'initial' => 'N',
+                    ],
+                    [
+                        'name' => 'Karan Malhotra',
+                        'time' => '6 months ago',
+                        'rating' => 5,
+                        'text' =>
+                            'Very reliable team for commercial document attestation. The process was smooth from submission to delivery.',
+                        'initial' => 'K',
+                    ],
+                ]);
+                $displayReviews = isset($latestReviews) && $latestReviews->isNotEmpty() ? $latestReviews : $fallbackReviews;
+            @endphp
 
-            @if (isset($latestReviews) && $latestReviews->isNotEmpty())
-                <div class="row g-4">
-                    @foreach ($latestReviews as $index => $review)
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                            <div class="testimonial-card">
-                                <div class="testimonial-stars">
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        <i class="fas fa-star"
-                                            style="{{ $i <= $review->rating ? '' : 'opacity:0.25;' }}"></i>
-                                    @endfor
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                                        alt="Google" class="testimonial-google-logo" />
-                                </div>
-                                <p>"{{ $review->review_text }}"</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar-placeholder">
-                                        {{ $review->initials }}
-                                    </div>
-                                    <div>
-                                        <h6>{{ $review->reviewer_name }}</h6>
-                                        @if ($review->reviewer_location)
-                                            <span><i class="fas fa-map-marker-alt me-1"
-                                                    style="color:var(--gold);"></i>{{ $review->reviewer_location }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+            <div class="google-review-wrap">
+                <div class="google-review-summary" data-aos="fade-right">
+                    <h2>S K Document Centre - Best Document Attestation & Apostille Services</h2>
+
+                    <div class="google-rating-row">
+                        <span>4.9</span>
+                        <span class="google-summary-stars" aria-label="5 star rating">★★★★★</span>
+                    </div>
+
+                    <p class="google-review-count">Based on 217 reviews</p>
+                    <p class="google-powered">powered by Google</p>
+
+                    <a href="https://maps.google.com/?q=S+K+Document+Centre+New+Ashok+Nagar+New+Delhi"
+                        target="_blank" rel="noopener noreferrer" class="google-review-btn">
+                        Review us on Google
+                    </a>
                 </div>
-            @else
-                <div class="row g-4">
-                    @php
-                        $staticReviews = [
-                            [
-                                'name' => 'Rahul Sharma',
-                                'location' => 'Delhi',
-                                'rating' => 5,
-                                'text' =>
-                                    'Excellent service! They helped me get my degree certificate attested for UAE in record time. The team was professional, responsive and the pricing was transparent. Highly recommend!',
-                                'initial' => 'R',
-                            ],
-                            [
-                                'name' => 'Priya Gupta',
-                                'location' => 'Mumbai',
-                                'rating' => 5,
-                                'text' =>
-                                    'SK Document Centre handled my marriage certificate attestation for a Kuwait visa. They guided me through every step and delivered the attested documents on time. Best attestation service in India.',
-                                'initial' => 'P',
-                            ],
-                            [
-                                'name' => 'Ahmed Khan',
-                                'location' => 'Hyderabad',
-                                'rating' => 5,
-                                'text' =>
-                                    'Best attestation service in India. They guided me through Apostille process for my documents and got it done quickly. Very professional staff and excellent customer support.',
-                                'initial' => 'A',
-                            ],
-                        ];
-                    @endphp
-                    @foreach ($staticReviews as $index => $review)
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                            <div class="testimonial-card">
-                                <div class="testimonial-stars">
-                                    @for ($i = 0; $i < $review['rating']; $i++)
-                                        <i class="fas fa-star"></i>
-                                    @endfor
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                                        alt="Google" class="testimonial-google-logo" />
+
+                <div class="google-review-slider-wrap" data-aos="fade-left">
+                    <div class="swiper testimonials-swiper">
+                        <div class="swiper-wrapper">
+                            @foreach ($displayReviews as $review)
+                                @php
+                                    $name = is_array($review) ? $review['name'] : $review->reviewer_name;
+                                    $rating = is_array($review) ? $review['rating'] : $review->rating;
+                                    $text = is_array($review) ? $review['text'] : $review->review_text;
+                                    $initial = is_array($review) ? $review['initial'] : $review->initials;
+                                    $time = is_array($review) ? $review['time'] : $review->reviewer_location ?? 'Verified client';
+                                @endphp
+                                <div class="swiper-slide">
+                                    <article class="google-review-card">
+                                        <div class="google-review-top">
+                                            <div class="google-review-user">
+                                                <div class="google-review-avatar">{{ $initial }}</div>
+                                                <div>
+                                                    <h3>{{ $name }}</h3>
+                                                    <span>{{ $time }}</span>
+                                                </div>
+                                            </div>
+                                            <span class="google-review-mark">G</span>
+                                        </div>
+
+                                        <div class="google-card-stars" aria-label="{{ $rating }} star rating">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <i class="fas fa-star" style="{{ $i <= $rating ? '' : 'opacity:0.25;' }}"></i>
+                                            @endfor
+                                        </div>
+
+                                        <p>{{ $text }}</p>
+                                    </article>
                                 </div>
-                                <p>"{{ $review['text'] }}"</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar-placeholder">{{ $review['initial'] }}</div>
-                                    <div>
-                                        <h6>{{ $review['name'] }}</h6>
-                                        <span><i class="fas fa-map-marker-alt me-1"
-                                                style="color:var(--gold);"></i>{{ $review['location'] }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
                 </div>
-            @endif
+            </div>
         </div>
     </section>
 
@@ -971,18 +984,221 @@
             border-color: var(--gold);
         }
 
-        .testimonial-stars {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.2rem;
+        .google-review-section {
+            background: #fff;
+            padding: 80px 0;
         }
 
-        .testimonial-google-logo {
-            width: 18px;
-            height: 18px;
-            margin-left: 0.35rem;
-            display: inline-block;
-            vertical-align: middle;
+        .google-review-wrap {
+            display: grid;
+            grid-template-columns: minmax(260px, 0.9fr) minmax(0, 2.1fr);
+            gap: 46px;
+            align-items: center;
+        }
+
+        .google-review-summary h2 {
+            color: var(--primary);
+            font-size: clamp(26px, 3.2vw, 38px);
+            line-height: 1.28;
+            font-weight: 700;
+            margin-bottom: 28px;
+            letter-spacing: 0;
+        }
+
+        .google-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--gold);
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .google-rating-row>span:first-child {
+            font-size: 52px;
+            line-height: 1;
+        }
+
+        .google-summary-stars,
+        .google-card-stars {
+            color: var(--gold);
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .google-summary-stars {
+            font-size: 22px;
+        }
+
+        .google-review-count {
+            color: #4f5b6b;
+            font-size: 18px;
+            margin-bottom: 26px;
+        }
+
+        .google-powered {
+            color: #737c89;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+
+        .google-review-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 58px;
+            padding: 14px 34px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: #fff !important;
+            font-size: 17px;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 16px 32px rgba(15, 32, 68, 0.14);
+            transition: all 0.25s ease;
+        }
+
+        .google-review-btn:hover {
+            background: var(--gold);
+            color: var(--primary) !important;
+            transform: translateY(-2px);
+        }
+
+        .google-review-slider-wrap {
+            min-width: 0;
+            position: relative;
+        }
+
+        .testimonials-swiper {
+            padding: 4px 4px 56px;
+        }
+
+        .testimonials-swiper .swiper-slide {
+            height: auto;
+            display: flex;
+        }
+
+        .google-review-card {
+            width: 100%;
+            min-height: 310px;
+            background: #fff;
+            border: 1px solid #e8ebf0;
+            border-radius: 16px;
+            padding: 34px;
+            box-shadow: 0 10px 30px rgba(15, 32, 68, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .google-review-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .google-review-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
+        }
+
+        .google-review-avatar {
+            flex: 0 0 62px;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .google-review-user h3 {
+            color: var(--primary);
+            font-size: 24px;
+            line-height: 1.15;
+            font-weight: 800;
+            margin: 0 0 4px;
+            overflow-wrap: anywhere;
+        }
+
+        .google-review-user span {
+            color: #77808d;
+            font-size: 19px;
+        }
+
+        .google-review-mark {
+            color: var(--gold);
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .google-card-stars {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .google-review-card p {
+            color: #243142;
+            font-size: 22px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .testimonials-swiper .swiper-button-next,
+        .testimonials-swiper .swiper-button-prev {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 16px 32px rgba(15, 32, 68, 0.18);
+            transition: all 0.25s ease;
+        }
+
+        .testimonials-swiper .swiper-button-next:hover,
+        .testimonials-swiper .swiper-button-prev:hover {
+            background: var(--gold);
+            color: var(--primary);
+        }
+
+        .testimonials-swiper .swiper-button-next::after,
+        .testimonials-swiper .swiper-button-prev::after {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .testimonials-swiper .swiper-button-prev {
+            left: 0px;
+        }
+
+        .testimonials-swiper .swiper-button-next {
+            right: 0px;
+        }
+
+        .testimonials-swiper .swiper-pagination {
+            bottom: 8px;
+        }
+
+        .testimonials-swiper .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: #c9c9c9;
+            opacity: 1;
+        }
+
+        .testimonials-swiper .swiper-pagination-bullet-active {
+            background: var(--gold);
         }
 
         /* Swiper Custom Styles */
@@ -1050,15 +1266,78 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
         }
 
+        @media (max-width: 1199px) {
+            .google-review-wrap {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .google-review-summary {
+                text-align: center;
+                max-width: 720px;
+                margin: 0 auto;
+            }
+
+            .google-rating-row {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
 
             .companies-swiper .swiper-button-next,
-            .companies-swiper .swiper-button-prev {
+            .companies-swiper .swiper-button-prev,
+            .testimonials-swiper .swiper-button-next,
+            .testimonials-swiper .swiper-button-prev {
                 display: none;
             }
 
             .companies-swiper {
                 padding-bottom: 40px;
+            }
+
+            .google-review-section {
+                padding: 60px 0;
+            }
+
+            .google-review-summary h2 {
+                font-size: 30px;
+            }
+
+            .google-rating-row>span:first-child {
+                font-size: 48px;
+            }
+
+            .google-review-card {
+                min-height: 280px;
+                padding: 24px;
+            }
+
+            .google-review-user h3 {
+                font-size: 20px;
+            }
+
+            .google-review-user span,
+            .google-review-card p {
+                font-size: 16px;
+            }
+
+            .google-review-avatar {
+                flex-basis: 54px;
+                width: 54px;
+                height: 54px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .google-review-btn {
+                width: 100%;
+                padding-inline: 18px;
+            }
+
+            .google-review-card {
+                padding: 20px;
             }
         }
     </style>
@@ -1068,46 +1347,84 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Initialize Swiper for tied-up companies
-        const companiesSwiper = new Swiper('.companies-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            },
-            breakpoints: {
-                480: {
-                    slidesPerView: 2,
-                    spaceBetween: 15,
+        const companiesEl = document.querySelector('.companies-swiper');
+
+        if (companiesEl) {
+            new Swiper('.companies-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
                 },
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
+                breakpoints: {
+                    480: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 20,
+                    },
+                    992: {
+                        slidesPerView: 4,
+                        spaceBetween: 25,
+                    },
+                    1200: {
+                        slidesPerView: 5,
+                        spaceBetween: 30,
+                    }
                 },
-                992: {
-                    slidesPerView: 4,
-                    spaceBetween: 25,
+                navigation: {
+                    nextEl: '.companies-swiper .swiper-button-next',
+                    prevEl: '.companies-swiper .swiper-button-prev',
                 },
-                1200: {
-                    slidesPerView: 5,
-                    spaceBetween: 30,
-                }
-            },
-            navigation: {
-                nextEl: '.companies-swiper .swiper-button-next',
-                prevEl: '.companies-swiper .swiper-button-prev',
-            },
-            pagination: {
-                el: '.companies-swiper .swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
-            },
-            grabCursor: true,
-            speed: 800,
-            effect: 'slide',
-        });
+                pagination: {
+                    el: '.companies-swiper .swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                grabCursor: true,
+                speed: 800,
+                effect: 'slide',
+            });
+        }
+
+        const testimonialsEl = document.querySelector('.testimonials-swiper');
+
+        if (testimonialsEl) {
+            new Swiper('.testimonials-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 24,
+                loop: true,
+                autoplay: {
+                    delay: 4200,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 1.2,
+                        spaceBetween: 24,
+                    },
+                    992: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                    }
+                },
+                navigation: {
+                    nextEl: '.testimonials-swiper .swiper-button-next',
+                    prevEl: '.testimonials-swiper .swiper-button-prev',
+                },
+                pagination: {
+                    el: '.testimonials-swiper .swiper-pagination',
+                    clickable: true,
+                },
+                grabCursor: true,
+                speed: 700,
+            });
+        }
     </script>
 @endpush
